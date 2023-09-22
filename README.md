@@ -5,3 +5,5 @@ https://trello.com/invite/workspacec0dba46d63d77d21ebf8ef198c032f2a/ATTI1651fd08
 
 TA website with tutorials and info: https://github.gatech.edu/pages/gtobdes/obdes/#/project
 
+Domain Model: https://drive.google.com/file/d/1mE0u0yu_xEsPDVozFABKbjXRgjbt5sBv/view?usp=sharing
+
