@@ -9,15 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
 
 public class EndScreen extends AppCompatActivity {
-
-    private AppBarConfiguration appBarConfiguration;
 
     private Button btnStartOver;
     @Override
@@ -35,12 +28,5 @@ public class EndScreen extends AppCompatActivity {
             }
         });
 
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_end_screen);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
     }
 }
