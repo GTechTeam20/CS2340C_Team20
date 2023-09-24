@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:fontFamily="@font/old_london"
+        android:textSize="70pt"
+        android:textFontWeight="@integer/material_motion_duration_long_2"
+        android:text="Game Over" />
+
+    <Button
+        android:id="@+id/btnStartOver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Over" />
+
+
+
+</LinearLayout>
