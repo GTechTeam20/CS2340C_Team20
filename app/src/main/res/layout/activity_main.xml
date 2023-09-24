@@ -16,18 +16,18 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/dungeon_game" />
     <Button
-        android:id="@+id/btnSelectDifficulty"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Select Difficulty" />
-
-    <Button
         android:id="@+id/btnStartGame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnSelectDifficulty"
-        android:layout_marginTop="16dp"
         android:text="Start Game" />
+
+    <Button
+        android:id="@+id/btnExit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnStartGame"
+        android:layout_marginTop="16dp"
+        android:text="Exit" />
 
 
 </LinearLayout>
