@@ -5,12 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="@drawable/background"
     tools:context=".GameActivity">
 
-    <TextView
-        android:id="@+id/textViewGameMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:text="Not implemented yet" />
 </RelativeLayout>

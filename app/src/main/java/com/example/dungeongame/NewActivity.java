@@ -4,35 +4,62 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class NewActivity extends AppCompatActivity {
 
-    // Declare your UI elements (EditText for name, RadioGroup for difficulty, ImageView for character selection).
+    private Button btnContinue;
+    private ImageView character1, character2, character3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new);
 
-        // Initialize and set listeners for UI elements.
+        btnContinue = findViewById(R.id.btnContinue);
+        character1 = findViewById(R.id.ibCharacter1);
+        character2 = findViewById(R.id.ibCharacter2);
+        character3 = findViewById(R.id.ibCharacter3);
 
-        // Add logic to validate name input, handle difficulty selection, and character selection.
+        // Initially, disable the "Continue" button
+        btnContinue.setEnabled(false);
 
-        // When everything is valid, allow the player to continue to the game screen.
-        Button btnContinue = findViewById(R.id.btnContinue);
+        // Add OnClickListener to each character image
+        character1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle character selection logic here
+                // Enable the "Continue" button
+                btnContinue.setEnabled(true);
+            }
+        });
+
+        character2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle character selection logic here
+                // Enable the "Continue" button
+                btnContinue.setEnabled(true);
+            }
+        });
+
+        character3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle character selection logic here
+                // Enable the "Continue" button
+                btnContinue.setEnabled(true);
+            }
+        });
+
+        // Continue button click handler
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Validate inputs and continue to the game screen if valid.
-                if (isInputValid()) {
-                    Intent intent = new Intent(NewActivity.this, GameActivity.class);
-                    // Pass necessary data (name, difficulty, character selection) using intent extras.
-                    startActivity(intent);
-                } else {
-                    // Show an error message or prevent the transition if inputs are not valid.
-                }
+                Intent intent = new Intent(NewActivity.this, GameActivity.class);
+                startActivity(intent);
             }
         });
     }

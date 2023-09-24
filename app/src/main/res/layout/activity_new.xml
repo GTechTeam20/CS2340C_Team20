@@ -61,9 +61,10 @@
         android:text="Select Character:"
         android:textSize="20sp"
         android:layout_below="@+id/radioGroupDifficulty"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp" />
 
     <LinearLayout
+        android:id="@+id/characterSelectionLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -73,27 +74,27 @@
         <ImageButton
             android:id="@+id/ibCharacter1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="150sp"
             android:layout_weight="1"
-            android:src="@drawable/character1"
+            android:src="@drawable/monkey"
             android:scaleType="fitCenter"
             android:contentDescription="Character 1" />
 
         <ImageButton
             android:id="@+id/ibCharacter2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="150sp"
             android:layout_weight="1"
-            android:src="@drawable/character2"
+            android:src="@drawable/pickle"
             android:scaleType="fitCenter"
             android:contentDescription="Character 2" />
 
         <ImageButton
             android:id="@+id/ibCharacter3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="150sp"
             android:layout_weight="1"
-            android:src="@drawable/character3"
+            android:src="@drawable/banana"
             android:scaleType="fitCenter"
             android:contentDescription="Character 3" />
     </LinearLayout>
@@ -104,7 +105,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Continue"
-        android:layout_below="@+id/textViewCharacter"
-        android:layout_marginTop="16dp" />
+        android:layout_below="@+id/characterSelectionLayout"
+        android:layout_marginTop="16dp"
+        android:enabled="false" />
 
 </RelativeLayout>
