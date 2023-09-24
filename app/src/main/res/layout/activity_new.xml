@@ -35,19 +35,19 @@
         android:layout_marginTop="8dp">
 
         <RadioButton
-            android:id="@+id/radioEasy"
+            android:id="@+id/Easy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Easy" />
 
         <RadioButton
-            android:id="@+id/radioMedium"
+            android:id="@+id/Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Medium" />
 
         <RadioButton
-            android:id="@+id/radioHard"
+            android:id="@+id/Hard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hard" />
