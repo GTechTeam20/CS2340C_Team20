@@ -7,5 +7,51 @@
     android:gravity="center"
     android:background="@drawable/background"
     tools:context=".GameActivity">
+    <!-- Display Player Name -->
+    <TextView
+        android:id="@+id/textViewPlayerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Player Name: "
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"/>
 
+    <!-- Display Character Sprite -->
+    <ImageView
+        android:id="@+id/imageViewCharacter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewPlayerName"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/monkey"
+        android:contentDescription="Character"/>
+
+    <!-- Display Chosen Difficulty -->
+    <TextView
+        android:id="@+id/textViewDifficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Difficulty: "
+        android:textSize="18sp"
+        android:layout_below="@+id/imageViewCharacter"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Display Player's Starting Health -->
+    <TextView
+        android:id="@+id/textViewStartingHealth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Starting Health: "
+        android:textSize="18sp"
+        android:layout_below="@+id/textViewDifficulty"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Button to Navigate to Ending Screen -->
+    <Button
+        android:id="@+id/btnEndGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="End Game"
+        android:layout_below="@+id/textViewStartingHealth"
+        android:layout_marginTop="24dp"/>
 </RelativeLayout>
