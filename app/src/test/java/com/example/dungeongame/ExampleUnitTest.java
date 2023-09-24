@@ -1,4 +1,4 @@
-package com.team20.dungeongame;
+package com.example.dungeongame;
 
 import org.junit.Test;
 

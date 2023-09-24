@@ -1,4 +1,4 @@
-package com.team20.dungeongame;
+package com.example.dungeongame;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.team20.dungeongame", appContext.getPackageName());
+        assertEquals("com.example.dungeongame", appContext.getPackageName());
     }
 }
