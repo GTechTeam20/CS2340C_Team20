@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle exit logic here (e.g., show a confirmation dialog).
+                finishAffinity();
+                System.exit(0);
             }
         });
     }
