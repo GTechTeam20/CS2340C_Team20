@@ -92,7 +92,7 @@ public class NewActivity extends AppCompatActivity {
         if (selectedImageButton != null) {
             selectedImageButton.setColorFilter(Color.TRANSPARENT); // Reset the tint
         }
-        imageButton.setColorFilter(getResources().getColor(R.color.purple_500));
+        imageButton.setColorFilter(R.color.purple_500);
         selectedImageButton = imageButton;
     }
 }
