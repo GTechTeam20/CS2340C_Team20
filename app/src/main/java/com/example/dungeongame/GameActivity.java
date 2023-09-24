@@ -21,7 +21,14 @@ public class GameActivity extends AppCompatActivity {
         String playerName = intent.getStringExtra("playerName");
         String selectedCharacter = intent.getStringExtra("selectedCharacter"); // Retrieve selected character
         String difficulty = intent.getStringExtra("selectedDifficulty");
-        int startingHealth = intent.getIntExtra("startingHealth", 100);
+        int startingHealth = 0;
+        if (difficulty.equals("Easy")) {
+            startingHealth = 100;
+        } else if (difficulty.equals("Medium")) {
+            startingHealth = 75;
+        } else {
+            startingHealth = 50;
+        }
 
         // Populate TextViews and ImageView
         TextView textViewPlayerName = findViewById(R.id.textViewPlayerName);
