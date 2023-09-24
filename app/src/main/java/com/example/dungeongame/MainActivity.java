@@ -1,5 +1,6 @@
 package com.example.dungeongame;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import androidx.core.view.WindowCompat;
 import androidx.navigation.NavController;
