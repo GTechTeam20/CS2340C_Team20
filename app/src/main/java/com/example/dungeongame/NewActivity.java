@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -16,7 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class NewActivity extends AppCompatActivity {
 
     private Button btnContinue;
-    private ImageButton character1, character2, character3;
+    private ImageButton character1;
+    private ImageButton character2;
+    private ImageButton character3;
     private String selectedCharacter = "";
     private EditText etPlayerName;
     private RadioGroup radioGroupDifficulty;
