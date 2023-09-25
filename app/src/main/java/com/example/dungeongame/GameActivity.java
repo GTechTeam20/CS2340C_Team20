@@ -2,7 +2,6 @@ package com.example.dungeongame;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,7 +18,8 @@ public class GameActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String playerName = intent.getStringExtra("playerName");
-        String selectedCharacter = intent.getStringExtra("selectedCharacter"); // Retrieve selected character
+        // Retrieve selected character
+        String selectedCharacter = intent.getStringExtra("selectedCharacter");
         String difficulty = intent.getStringExtra("selectedDifficulty");
         int startingHealth = 0;
         if (difficulty.equals("Easy")) {
