@@ -13,9 +13,11 @@ import android.widget.RadioGroup;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dungeongame.R;
+import com.example.dungeongame.viewmodels.ConfigurationViewModel;
 
 public class NewActivity extends AppCompatActivity {
 
+    private ConfigurationViewModel viewModel;
     private Button btnContinue;
     private ImageButton character1;
     private ImageButton character2;
@@ -23,11 +25,13 @@ public class NewActivity extends AppCompatActivity {
     private String selectedCharacter = "";
     private EditText etPlayerName;
     private RadioGroup radioGroupDifficulty;
-    private ImageButton selectedImageButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new);
+
+        // Initialize the ViewModel
+        viewModel = new ConfigurationViewModel();
 
         btnContinue = findViewById(R.id.btnContinue);
         character1 = findViewById(R.id.ibCharacter1);
@@ -45,7 +49,7 @@ public class NewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 selectedCharacter = "monkey";
                 btnContinue.setEnabled(true);
-                onImageButtonClick(character1);
+                viewModel.onImageButtonClick(character1);
             }
         });
 
@@ -54,7 +58,7 @@ public class NewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 selectedCharacter = "pickle";
                 btnContinue.setEnabled(true);
-                onImageButtonClick(character2);
+                viewModel.onImageButtonClick(character2);
             }
         });
 
@@ -63,7 +67,7 @@ public class NewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 selectedCharacter = "banana";
                 btnContinue.setEnabled(true);
-                onImageButtonClick(character3);
+                viewModel.onImageButtonClick(character3);
             }
         });
 
@@ -71,7 +75,7 @@ public class NewActivity extends AppCompatActivity {
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isInputValid(etPlayerName.getText().toString())) {
+                if (viewModel.isInputValid(etPlayerName.getText().toString())) {
                     int selectedRadioButtonId = radioGroupDifficulty.getCheckedRadioButtonId();
                     RadioButton selectedRadioButton = findViewById(selectedRadioButtonId);
                     String selectedDifficulty = selectedRadioButton.getText().toString();
@@ -83,19 +87,5 @@ public class NewActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    // Implement validation logic for name input and difficulty selection.
-
-    private boolean isInputValid(String input) {
-        return input != null && !input.trim().isEmpty();
-    }
-
-    public void onImageButtonClick(ImageButton imageButton) {
-        if (selectedImageButton != null) {
-            selectedImageButton.setColorFilter(Color.TRANSPARENT); // Reset the tint
-        }
-        imageButton.setColorFilter(R.color.purple_500);
-        selectedImageButton = imageButton;
     }
 }
