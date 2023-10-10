@@ -1,4 +1,4 @@
-package com.example.dungeongame;
+package com.example.dungeongame.views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.dungeongame.R;
 
 public class GameActivity extends AppCompatActivity {
     private static final long DELAY_MILLIS = 5000;
