@@ -14,7 +14,7 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".MainActivity"
+            android:name=".views.MainActivity"
             android:exported="true"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.DungeonGame">
@@ -25,14 +25,14 @@
         </activity>
 
         <activity
-            android:name=".NewActivity"
+            android:name=".views.NewActivity"
             android:exported="false" />
 
         <activity
-            android:name=".GameActivity"
+            android:name=".views.GameActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.dungeongame.EndScreen"
+            android:name="com.example.dungeongame.views.EndScreen"
             android:exported="false"/>
 
     </application>
