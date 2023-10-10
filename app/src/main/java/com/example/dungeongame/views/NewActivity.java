@@ -1,4 +1,4 @@
-package com.example.dungeongame;
+package com.example.dungeongame.views;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,6 +11,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.dungeongame.R;
 
 public class NewActivity extends AppCompatActivity {
 
