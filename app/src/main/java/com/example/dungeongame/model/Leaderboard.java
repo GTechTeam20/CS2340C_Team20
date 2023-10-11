@@ -10,7 +10,7 @@ public class Leaderboard {
     private int size;
     private int MAX_SIZE = 5;
     private static Leaderboard singleton;
-    public Leaderboard() {
+    private Leaderboard() {
         lastEntry = new LeaderboardEntry("null", -1, new Date());
         entries = new ArrayList<>();
         size = 0;
