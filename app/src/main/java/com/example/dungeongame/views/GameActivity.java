@@ -10,6 +10,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dungeongame.R;
+import com.example.dungeongame.model.Leaderboard;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class GameActivity extends AppCompatActivity {
     private static final long DELAY_MILLIS = 5000;
@@ -55,6 +59,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to the ending screen
+                Leaderboard.getLeaderboard().AddEntry(playerName, 100, new Date());
                 Intent endingIntent = new Intent(GameActivity.this, EndScreen.class);
                 startActivity(endingIntent);
                 finish(); // Finish this activity
