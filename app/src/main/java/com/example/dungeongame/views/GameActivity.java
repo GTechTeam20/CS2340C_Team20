@@ -2,21 +2,31 @@ package com.example.dungeongame.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dungeongame.R;
 import com.example.dungeongame.model.Leaderboard;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class GameActivity extends AppCompatActivity {
-    private static final long DELAY_MILLIS = 5000;
+    private static final long DELAY_MILLIS = 1000; // One second delay
+    private int score = 10; // Starting score
+    private int currentRoom = 0;
+    private int[] roomBackgrounds = {
+            R.drawable.room1,
+            R.drawable.room2,
+            R.drawable.room3
+    };
+
+    private ImageView imageViewCharacter;
+    private TextView textViewScore;
+    private ImageView roomImageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,30 +34,60 @@ public class GameActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String playerName = intent.getStringExtra("playerName");
-        // Retrieve selected character
         String selectedCharacter = intent.getStringExtra("selectedCharacter");
         String difficulty = intent.getStringExtra("selectedDifficulty");
-        int startingHealth = 0;
-        if (difficulty.equals("Easy")) {
-            startingHealth = 100;
-        } else if (difficulty.equals("Medium")) {
-            startingHealth = 75;
-        } else {
-            startingHealth = 50;
-        }
+        int startingHealth = getStartingHealthForDifficulty(difficulty);
 
-        // Populate TextViews and ImageView
         TextView textViewPlayerName = findViewById(R.id.textViewPlayerName);
-        ImageView imageViewCharacter = findViewById(R.id.imageViewCharacter);
-        TextView textViewDifficulty = findViewById(R.id.textViewDifficulty);
-        TextView textViewStartingHealth = findViewById(R.id.textViewStartingHealth);
+        textViewScore = findViewById(R.id.textViewScore);
+        imageViewCharacter = findViewById(R.id.imageViewCharacter);
+        roomImageView = findViewById(R.id.roomImageView);
 
         textViewPlayerName.setText("Player Name: " + playerName);
-        textViewDifficulty.setText("Difficulty: " + difficulty);
-        textViewStartingHealth.setText("Starting Health: " + startingHealth);
+        textViewScore.setText("Score: " + score);
 
-        // Button to navigate to the ending screen
-        Button btnEndGame = findViewById(R.id.btnEndGame);
+        setCharacterImage(selectedCharacter);
+        setRoomBackground(currentRoom);
+
+        Button btnNextRoom = findViewById(R.id.btnNextRoom);
+        btnNextRoom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentRoom < roomBackgrounds.length - 1) {
+                    currentRoom++;
+                    setRoomBackground(currentRoom);
+                } else {
+                    // Implement what happens when all rooms are completed
+                }
+            }
+        });
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (score > 0) {
+                    score -= 1;
+                    updateScore();
+                    handler.postDelayed(this, DELAY_MILLIS);
+                } else {
+                    Leaderboard.getLeaderboard().AddEntry(playerName, 0, new Date());
+                    Intent endingIntent = new Intent(GameActivity.this, EndScreen.class);
+                    endingIntent.putExtra("score", 0);
+                    startActivity(endingIntent);
+                    finish();
+                }
+            }
+        }, DELAY_MILLIS);
+    }
+
+    private void setRoomBackground(int roomNumber) {
+        if (roomNumber >= 0 && roomNumber < roomBackgrounds.length) {
+            roomImageView.setImageResource(roomBackgrounds[roomNumber]);
+        }
+    }
+
+    private void setCharacterImage(String selectedCharacter) {
         if ("monkey".equals(selectedCharacter)) {
             imageViewCharacter.setImageResource(R.drawable.monkey);
         } else if ("pickle".equals(selectedCharacter)) {
@@ -55,15 +95,22 @@ public class GameActivity extends AppCompatActivity {
         } else if ("banana".equals(selectedCharacter)) {
             imageViewCharacter.setImageResource(R.drawable.banana);
         }
-        btnEndGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to the ending screen
-                Leaderboard.getLeaderboard().AddEntry(playerName, 100, new Date());
-                Intent endingIntent = new Intent(GameActivity.this, EndScreen.class);
-                startActivity(endingIntent);
-                finish(); // Finish this activity
-            }
-        });
+    }
+
+    private void updateScore() {
+        textViewScore.setText("Score: " + score);
+    }
+    public int getStartingHealthForDifficulty(String difficulty) {
+        int startingHealth = 0;
+
+        if ("Easy".equals(difficulty)) {
+            startingHealth = 100;
+        } else if ("Medium".equals(difficulty)) {
+            startingHealth = 75;
+        } else if ("Hard".equals(difficulty)) {
+            startingHealth = 50;
+        }
+
+        return startingHealth;
     }
 }

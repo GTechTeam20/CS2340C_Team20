@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="@drawable/background"
     tools:context=".views.GameActivity">
+
     <!-- Display Player Name -->
     <TextView
         android:id="@+id/textViewPlayerName"
@@ -14,7 +14,15 @@
         android:layout_height="wrap_content"
         android:text="Player Name: "
         android:textSize="18sp"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp" />
+
+    <!-- Display Room Background -->
+    <ImageView
+        android:id="@+id/roomImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textViewPlayerName"
+        android:layout_marginTop="8dp" />
 
     <!-- Display Character Sprite -->
     <ImageView
@@ -23,8 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewPlayerName"
         android:layout_marginTop="8dp"
-        android:src="@drawable/monkey"
-        android:contentDescription="Character"/>
+        android:contentDescription="Character" />
 
     <!-- Display Chosen Difficulty -->
     <TextView
@@ -34,7 +41,7 @@
         android:text="Difficulty: "
         android:textSize="18sp"
         android:layout_below="@+id/imageViewCharacter"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp" />
 
     <!-- Display Player's Starting Health -->
     <TextView
@@ -44,14 +51,24 @@
         android:text="Starting Health: "
         android:textSize="18sp"
         android:layout_below="@+id/textViewDifficulty"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp" />
 
-    <!-- Button to Navigate to Ending Screen -->
+    <!-- Button to Navigate to Next Room -->
     <Button
-        android:id="@+id/btnEndGame"
+        android:id="@+id/btnNextRoom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="End Game"
+        android:text="Next Room"
         android:layout_below="@+id/textViewStartingHealth"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="24dp" />
+
+    <!-- Display Score -->
+    <TextView
+        android:id="@+id/textViewScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Score: 10"
+        android:textSize="18sp"
+        android:layout_below="@+id/btnNextRoom"
+        android:layout_marginTop="24dp" />
 </RelativeLayout>
