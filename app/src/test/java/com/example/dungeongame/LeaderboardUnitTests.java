@@ -53,6 +53,6 @@ public class LeaderboardUnitTests {
         Leaderboard leaderboard = Leaderboard.getLeaderboard();
         leaderboard.AddEntry("Player1", 80, new Date());
         leaderboard.AddEntry("Player2", 70, new Date());
-        assertEquals(10, leaderboard.getEntries().get(0).compareTo(leaderboard.getLastEntry()));
+        assertEquals(10, leaderboard.getEntries().get(1).compareTo(leaderboard.getEntries().get(0)));
     }
 }
