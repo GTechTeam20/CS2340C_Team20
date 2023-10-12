@@ -8,3 +8,8 @@ TA website with tutorials and info: https://github.gatech.edu/pages/gtobdes/obde
 Domain model: https://drive.google.com/file/d/1mE0u0yu_xEsPDVozFABKbjXRgjbt5sBv/view?usp=sharing
 
 Use-Case Diagram: https://drive.google.com/file/d/12py3N_qynZC8keXDFkhk5WMFy-vMrC0p/view?usp=sharing
+
+
+# Sprint 2 SSDs
+
+https://drive.google.com/file/d/1bqjQ22Pr38intkPnnQrISt8_-ent7WpM/view?usp=sharing
