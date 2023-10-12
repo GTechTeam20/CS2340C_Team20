@@ -40,4 +40,19 @@ public class LeaderboardUnitTests {
         assertEquals(leaderboard.getEntries().get(4).getName(), "Player5");
 
     }
+
+    @Test
+    public void leaderBoard_getScore() {
+        Leaderboard leaderboard = Leaderboard.getLeaderboard();
+        leaderboard.AddEntry("Player1", 80, new Date());
+        assertEquals(leaderboard.getEntries().get(0).getScore(), 80);
+    }
+
+    @Test
+    public void leaderBoard_compareTo() {
+        Leaderboard leaderboard = Leaderboard.getLeaderboard();
+        leaderboard.AddEntry("Player1", 80, new Date());
+        leaderboard.AddEntry("Player2", 70, new Date());
+        assertEquals(10, leaderboard.getEntries().get(0).compareTo(leaderboard.getLastEntry()));
+    }
 }
