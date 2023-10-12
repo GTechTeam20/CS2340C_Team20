@@ -1,6 +1,7 @@
 package com.example.dungeongame;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import android.widget.ArrayAdapter;
 
@@ -55,4 +56,20 @@ public class LeaderboardUnitTests {
         leaderboard.AddEntry("Player2", 70, new Date());
         assertEquals(10, leaderboard.getEntries().get(1).compareTo(leaderboard.getEntries().get(0)));
     }
+
+    @Test
+    public void leaderboardValid() {
+        Leaderboard leaderboard = Leaderboard.getLeaderboard();
+        leaderboard.AddEntry("Player1", 50, new Date());
+        assertNotNull(leaderboard);
+    }
+
+    @Test
+    public void leaderBoard_getName() {
+        Leaderboard leaderboard = Leaderboard.getLeaderboard();
+        leaderboard.AddEntry("Player1", 50, new Date());
+        assertEquals(leaderboard.getEntries().get(0).getName(), "Player1");
+    }
+
+
 }
