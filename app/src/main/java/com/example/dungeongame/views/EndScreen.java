@@ -7,16 +7,11 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.dungeongame.R;
-import com.example.dungeongame.model.Leaderboard;
-import com.example.dungeongame.model.LeaderboardEntry;
 import com.example.dungeongame.viewmodels.EndScreenViewModel;
-
-import java.util.ArrayList;
 
 
 public class EndScreen extends AppCompatActivity {

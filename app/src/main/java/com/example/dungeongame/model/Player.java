@@ -2,7 +2,9 @@ package com.example.dungeongame.model;
 
 // Layout for the singleton user class
 public class Player {
-    private Player() {}
+    private Player() {
+
+    }
 
     private static Player instance = null;
 

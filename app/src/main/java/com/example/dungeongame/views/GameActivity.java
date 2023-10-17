@@ -18,9 +18,9 @@ public class GameActivity extends AppCompatActivity {
     private int score = 10; // Starting score
     private int currentRoom = 0;
     private int[] roomBackgrounds = {
-            R.drawable.room1,
-            R.drawable.room2,
-            R.drawable.room3
+        R.drawable.room1,
+        R.drawable.room2,
+        R.drawable.room3
     };
 
     private ImageView imageViewCharacter;
@@ -56,9 +56,11 @@ public class GameActivity extends AppCompatActivity {
                 if (currentRoom < roomBackgrounds.length - 1) {
                     currentRoom++;
                     setRoomBackground(currentRoom);
-                } else {
-                    // Implement what happens when all rooms are completed
                 }
+                //else {
+                // Implement what happens when all rooms are completed
+
+                //}
             }
         });
 
@@ -71,7 +73,7 @@ public class GameActivity extends AppCompatActivity {
                     updateScore();
                     handler.postDelayed(this, DELAY_MILLIS);
                 } else {
-                    Leaderboard.getLeaderboard().AddEntry(playerName, 0, new Date());
+                    Leaderboard.getLeaderboard().addEntry(playerName, 0, new Date());
                     Intent endingIntent = new Intent(GameActivity.this, EndScreen.class);
                     endingIntent.putExtra("score", 0);
                     startActivity(endingIntent);
