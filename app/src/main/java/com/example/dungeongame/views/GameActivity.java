@@ -1,8 +1,11 @@
 package com.example.dungeongame.views;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,12 +14,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dungeongame.R;
 import com.example.dungeongame.model.Leaderboard;
+import com.example.dungeongame.model.Sprite;
+
 import java.util.Date;
 
 public class GameActivity extends AppCompatActivity {
     private static final long DELAY_MILLIS = 1000; // One second delay
     private int score = 10; // Starting score
     private int currentRoom = 0;
+
+    private int x, y;
     private int[] roomBackgrounds = {
         R.drawable.room1,
         R.drawable.room2,
@@ -24,6 +31,7 @@ public class GameActivity extends AppCompatActivity {
     };
 
     private ImageView imageViewCharacter;
+    private Sprite sprite;
     private TextView textViewScore;
     private ImageView roomImageView;
 
@@ -41,6 +49,7 @@ public class GameActivity extends AppCompatActivity {
         TextView textViewPlayerName = findViewById(R.id.textViewPlayerName);
         textViewScore = findViewById(R.id.textViewScore);
         imageViewCharacter = findViewById(R.id.imageViewCharacter);
+        sprite = new Sprite(10, 10, imageViewCharacter);
         roomImageView = findViewById(R.id.roomImageView);
 
         textViewPlayerName.setText("Player Name: " + playerName);
@@ -114,5 +123,25 @@ public class GameActivity extends AppCompatActivity {
         }
 
         return startingHealth;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                x -= 20;
+                break;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                x += 20;
+                break;
+            case KeyEvent.KEYCODE_DPAD_UP:
+                y -= 20;
+                break;
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                y += 20;
+                break;
+        }
+        sprite.updateSpritePosition(x, y);
+        return true;
     }
 }
