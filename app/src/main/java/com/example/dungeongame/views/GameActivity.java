@@ -163,4 +163,10 @@ public class GameActivity extends AppCompatActivity {
 
         return true;
     }
+    public int getPlayerX() {
+        return playerX;
+    }
+    public int getPlayerY() {
+        return playerY;
+    }
 }
