@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:fontFamily="@font/old_london"
-        android:text="Game Over"
+        android:text="You Win!"
         android:textAlignment="center"
         android:textFontWeight="@integer/material_motion_duration_long_2"
         android:textSize="96sp" />

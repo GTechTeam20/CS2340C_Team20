@@ -21,70 +21,52 @@
         android:id="@+id/roomImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/textViewPlayerName"
+        android:layout_below="@id/textViewScore"
         android:layout_marginTop="8dp" />
 
     <!-- Display Character Sprite -->
-    <ImageView
-        android:id="@+id/imageViewCharacter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewPlayerName"
-        android:layout_marginTop="8dp"
-        android:contentDescription="Character" />
 
     <!-- Display Chosen Difficulty -->
-    <TextView
-        android:id="@+id/textViewDifficulty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Difficulty: "
-        android:textSize="18sp"
-        android:layout_below="@+id/imageViewCharacter"
-        android:layout_marginTop="16dp" />
 
     <!-- Display Player's Starting Health -->
-    <TextView
-        android:id="@+id/textViewStartingHealth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Starting Health: "
-        android:textSize="18sp"
-        android:layout_below="@+id/textViewDifficulty"
-        android:layout_marginTop="16dp" />
 
     <!-- Button to Navigate to Next Room -->
-    <Button
-        android:id="@+id/btnNextRoom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Next Room"
-        android:layout_below="@+id/textViewStartingHealth"
-        android:layout_marginTop="24dp" />
-
-    <ImageView
-        android:id = "@+id/ibCharacter1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:scaleType="fitCenter" />
-    <ImageView
-        android:id = "@+id/ibCharacter2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:scaleType="fitCenter" />
-    <ImageView
-        android:id = "@+id/ibCharacter3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:scaleType="fitCenter" />
 
     <!-- Display Score -->
+
     <TextView
         android:id="@+id/textViewScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/textViewPlayerName"
+        android:layout_marginTop="24dp"
         android:text="Score: 10"
-        android:textSize="18sp"
-        android:layout_below="@+id/btnNextRoom"
-        android:layout_marginTop="24dp" />
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/imageViewCharacter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:contentDescription="Character"
+        android:scaleX=".15"
+        android:scaleY=".15" />
+
+    <ImageView
+        android:id="@+id/ibCharacter1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter" />
+
+    <ImageView
+        android:id="@+id/ibCharacter2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter" />
+
+    <ImageView
+        android:id="@+id/ibCharacter3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter" />
 </RelativeLayout>
