@@ -10,6 +10,8 @@ public class Sprite {
         this.x = x;
         this.y = y;
         this.SpriteImage = SpriteImage;
+        SpriteImage.setX(x);
+        SpriteImage.setY(y);
     }
 
     public ImageView getCharacterImage() {
@@ -22,6 +24,7 @@ public class Sprite {
     public void updateSpritePosition(int x, int y) {
         this.x = x;
         this.y = y;
-
+        this.SpriteImage.setX(x);
+        this.SpriteImage.setY(y);
     }
 }

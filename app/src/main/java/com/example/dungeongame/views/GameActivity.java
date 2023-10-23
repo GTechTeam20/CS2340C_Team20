@@ -1,8 +1,6 @@
 package com.example.dungeongame.views;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
@@ -19,11 +17,20 @@ import com.example.dungeongame.model.Sprite;
 import java.util.Date;
 
 public class GameActivity extends AppCompatActivity {
-    private static final long DELAY_MILLIS = 1000; // One second delay
-    private int score = 10; // Starting score
+    private static final long DELAY_MILLIS = 100; // One second delay
+    private int score = 1000; // Starting score
     private int currentRoom = 0;
 
-    private int x, y;
+    private boolean endGame = false;
+
+    private int playerX;
+    private int playerY;
+
+    private int[][] startingPosition = {
+            {100, 700},
+            {100, 700},
+            {100, 700}};
+
     private int[] roomBackgrounds = {
         R.drawable.room1,
         R.drawable.room2,
@@ -31,7 +38,7 @@ public class GameActivity extends AppCompatActivity {
     };
 
     private ImageView imageViewCharacter;
-    private Sprite sprite;
+    private Sprite playerSprite;
     private TextView textViewScore;
     private ImageView roomImageView;
 
@@ -49,7 +56,9 @@ public class GameActivity extends AppCompatActivity {
         TextView textViewPlayerName = findViewById(R.id.textViewPlayerName);
         textViewScore = findViewById(R.id.textViewScore);
         imageViewCharacter = findViewById(R.id.imageViewCharacter);
-        sprite = new Sprite(10, 10, imageViewCharacter);
+        playerSprite = new Sprite(10, 10, imageViewCharacter);
+        playerX = startingPosition[currentRoom][0];
+        playerY = startingPosition[currentRoom][1];
         roomImageView = findViewById(R.id.roomImageView);
 
         textViewPlayerName.setText("Player Name: " + playerName);
@@ -58,39 +67,29 @@ public class GameActivity extends AppCompatActivity {
         setCharacterImage(selectedCharacter);
         setRoomBackground(currentRoom);
 
-        Button btnNextRoom = findViewById(R.id.btnNextRoom);
-        btnNextRoom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (currentRoom < roomBackgrounds.length - 1) {
-                    currentRoom++;
-                    setRoomBackground(currentRoom);
-                }
-                //else {
-                // Implement what happens when all rooms are completed
-
-                //}
-            }
-        });
-
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (score > 0) {
+                if (score > 0 && !endGame) {
+                    if (score == 1000) {
+                        playerSprite.updateSpritePosition(playerX, playerY);
+                    }
                     score -= 1;
                     updateScore();
                     handler.postDelayed(this, DELAY_MILLIS);
+                    // textViewPlayerName.setText("Player X: " + playerX + "\nPlayer Y: " + playerY);
                 } else {
-                    Leaderboard.getLeaderboard().addEntry(playerName, 0, new Date());
+                    Leaderboard.getLeaderboard().addEntry(playerName, score, new Date());
                     Intent endingIntent = new Intent(GameActivity.this, EndScreen.class);
-                    endingIntent.putExtra("score", 0);
+                    endingIntent.putExtra("score", score);
                     startActivity(endingIntent);
                     finish();
                 }
             }
         }, DELAY_MILLIS);
     }
+
 
     private void setRoomBackground(int roomNumber) {
         if (roomNumber >= 0 && roomNumber < roomBackgrounds.length) {
@@ -127,21 +126,78 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        int newX = playerX;
+        int newY = playerY;
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_LEFT:
-                x -= 20;
+                newX -= 20;
                 break;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
-                x += 20;
+                newX += 20;
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
-                y -= 20;
+                newY -= 20;
                 break;
             case KeyEvent.KEYCODE_DPAD_DOWN:
-                y += 20;
+                newY += 20;
                 break;
         }
-        sprite.updateSpritePosition(x, y);
+
+        int collision = checkCollisions(newX, newY);
+        if (collision == 2){
+            currentRoom++;
+            if (currentRoom == 3) {
+                endGame = true;
+            } else {
+                setRoomBackground(currentRoom);
+                playerX = startingPosition[currentRoom][0];
+                playerY = startingPosition[currentRoom][1];
+                playerSprite.updateSpritePosition(playerX, playerY);
+            }
+        }
+        if (collision == 1) {
+            playerX = newX;
+            playerY = newY;
+            playerSprite.updateSpritePosition(playerX, playerY);
+        }
         return true;
+    }
+
+    public int checkCollisions(int x, int y) {
+        // wall = 0, open = 1, exit = 2
+        if (currentRoom == 0) {
+            if ((x < 500 && x > -400) && (y > 400 && y < 800)) {
+                return 1;
+            }
+            if (y > 500 && y < 700 && x <= -400) {
+                return 2;
+            }
+            return 0;
+        }
+        if (currentRoom == 1) {
+            if ((x < 500 && x > -400) && (y > 400 && y < 800)) {
+                return 1;
+            }
+            if (x > -100 && x < 100) {
+                return 2;
+            }
+            return 0;
+        }
+        if (currentRoom == 2) {
+            if ((x < 500 && x > -400) && (y > 450 && y < 800)) {
+                return 1;
+            }
+            if (y > 500 && y < 700 && x <= -400) {
+                return 2;
+            }
+            return 0;
+        }
+        return 0;
+    }
+    public int getPlayerX() {
+        return playerX;
+    }
+    public int getPlayerY() {
+        return playerY;
     }
 }
