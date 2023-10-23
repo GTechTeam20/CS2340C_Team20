@@ -19,4 +19,16 @@ public class PlayerUnitTest {
         assertEquals(false, player.attemptMove(-15,-11,3));
 
     }
+    @Test
+    public void testMoveToExitIsSuccessful() {
+        // Attempt a move to the exit, expect true
+        assertEquals(true, player.attemptMove(0, 100, 0));
+    }
+
+    @Test
+    public void testMoveToWallIsUnsuccessful() {
+        // Attempt a move into a wall, expect false
+        assertEquals(false, player.attemptMove(-500, -500, 0));
+    }
+
 }
