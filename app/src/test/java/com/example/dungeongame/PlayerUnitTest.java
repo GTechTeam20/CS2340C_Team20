@@ -78,7 +78,6 @@ public class PlayerUnitTest {
         assertEquals(false, player.attemptMove(-500, -500, 0));
     }
     @Test
-    @Test
     public void testMoveUpandDown() {
         assertEquals(true, player.attemptMove(2,2,1));
         assertEquals(true, player.attemptMove(2,3,1));
