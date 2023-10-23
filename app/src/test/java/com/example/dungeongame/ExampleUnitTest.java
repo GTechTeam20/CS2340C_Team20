@@ -33,7 +33,4 @@ public class ExampleUnitTest {
         assertEquals(false, vm.isInputValid(""));
         assertEquals(false, vm.isInputValid("   "));
     }
-
-
-
 }
