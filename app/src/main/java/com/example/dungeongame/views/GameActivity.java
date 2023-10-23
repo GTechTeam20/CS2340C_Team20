@@ -100,7 +100,7 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private void setCharacterImage(String selectedCharacter) {
+    public void setCharacterImage(String selectedCharacter) {
         if ("monkey".equals(selectedCharacter)) {
             imageViewCharacter.setImageResource(R.drawable.monkey);
         } else if ("pickle".equals(selectedCharacter)) {

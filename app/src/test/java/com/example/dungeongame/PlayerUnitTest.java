@@ -67,7 +67,14 @@ public class PlayerUnitTest {
     public void checkOutBounds2() {
         assertEquals(player.checkCollisions(0, 1000, 0), 0);
     }
+    public void testMoveToExitIsSuccessful() {
+        // Attempt a move to the exit, expect true
+        assertEquals(true, player.attemptMove(0, 100, 0));
+    }
 
-
-
+    @Test
+    public void testMoveToWallIsUnsuccessful() {
+        // Attempt a move into a wall, expect false
+        assertEquals(false, player.attemptMove(-500, -500, 0));
+    }
 }
