@@ -12,7 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dungeongame.R;
 import com.example.dungeongame.model.Leaderboard;
+import com.example.dungeongame.model.Player;
 import com.example.dungeongame.model.Sprite;
+import com.example.dungeongame.model.behaviors.InputObserver;
 
 import java.util.Date;
 
@@ -23,13 +25,15 @@ public class GameActivity extends AppCompatActivity {
 
     private boolean endGame = false;
 
-    private int playerX;
-    private int playerY;
+    private int playerX = 100;
+    private int playerY = 700;
 
     private int[][] startingPosition = {
             {100, 700},
             {100, 700},
             {100, 700}};
+
+    private InputObserver inputSubscriber;
 
     private int[] roomBackgrounds = {
         R.drawable.room1,
@@ -57,8 +61,10 @@ public class GameActivity extends AppCompatActivity {
         textViewScore = findViewById(R.id.textViewScore);
         imageViewCharacter = findViewById(R.id.imageViewCharacter);
         playerSprite = new Sprite(10, 10, imageViewCharacter);
-        playerX = startingPosition[currentRoom][0];
-        playerY = startingPosition[currentRoom][1];
+        Player player = Player.getInstance();
+        player.setSprite(playerSprite);
+        player.resetPosition(0);
+        inputSubscriber = player;
         roomImageView = findViewById(R.id.roomImageView);
 
         textViewPlayerName.setText("Player Name: " + playerName);
@@ -73,7 +79,7 @@ public class GameActivity extends AppCompatActivity {
             public void run() {
                 if (score > 0 && !endGame) {
                     if (score == 1000) {
-                        playerSprite.updateSpritePosition(playerX, playerY);
+                        player.resetPosition(0);
                     }
                     score -= 1;
                     updateScore();
@@ -126,8 +132,8 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        int newX = playerX;
-        int newY = playerY;
+        int newX = 0;
+        int newY = 0;
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_LEFT:
                 newX -= 20;
@@ -143,55 +149,18 @@ public class GameActivity extends AppCompatActivity {
                 break;
         }
 
-        int collision = checkCollisions(newX, newY);
-        if (collision == 2){
-            currentRoom++;
-            if (currentRoom == 3) {
-                endGame = true;
-            } else {
-                setRoomBackground(currentRoom);
-                playerX = startingPosition[currentRoom][0];
-                playerY = startingPosition[currentRoom][1];
-                playerSprite.updateSpritePosition(playerX, playerY);
+        if (newX != 0 || newY != 0) {
+            if (inputSubscriber.attemptMove(newX, newY, currentRoom)) {
+                currentRoom++;
+                if (currentRoom == 3) {
+                    endGame = true;
+                } else {
+                    setRoomBackground(currentRoom);
+                    Player.getInstance().resetPosition(currentRoom);
+                }
             }
         }
-        if (collision == 1) {
-            playerX = newX;
-            playerY = newY;
-            playerSprite.updateSpritePosition(playerX, playerY);
-        }
-        return true;
-    }
 
-    public int checkCollisions(int x, int y) {
-        // wall = 0, open = 1, exit = 2
-        if (currentRoom == 0) {
-            if ((x < 500 && x > -400) && (y > 400 && y < 800)) {
-                return 1;
-            }
-            if (y > 500 && y < 700 && x <= -400) {
-                return 2;
-            }
-            return 0;
-        }
-        if (currentRoom == 1) {
-            if ((x < 500 && x > -400) && (y > 400 && y < 800)) {
-                return 1;
-            }
-            if (x > -100 && x < 100) {
-                return 2;
-            }
-            return 0;
-        }
-        if (currentRoom == 2) {
-            if ((x < 500 && x > -400) && (y > 450 && y < 800)) {
-                return 1;
-            }
-            if (y > 500 && y < 700 && x <= -400) {
-                return 2;
-            }
-            return 0;
-        }
-        return 0;
+        return true;
     }
 }
