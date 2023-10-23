@@ -36,13 +36,15 @@ public class Player implements InputObserver {
         int newX = playerX + x;
         int newY = playerY + y;
         int collision = checkCollisions(newX, newY, currentRoom);
-        if (collision == 2){
+        if (collision == 2) {
             return true;
         }
         if (collision == 1) {
             playerX = newX;
             playerY = newY;
-            sprite.updateSpritePosition(playerX, playerY);
+            if (sprite != null) {
+                sprite.updateSpritePosition(playerX, playerY);
+            }
         }
         return false;
     }
@@ -81,7 +83,15 @@ public class Player implements InputObserver {
     public void resetPosition(int room) {
         playerX = startingPosition[room][0];
         playerY = startingPosition[room][1];
-        sprite.updateSpritePosition(playerX, playerY);
+        if (sprite != null) {
+            sprite.updateSpritePosition(playerX, playerY);
+        }
+    }
 
+    public int getPlayerX() {
+        return playerX;
+    }
+    public int getPlayerY() {
+        return playerY;
     }
 }

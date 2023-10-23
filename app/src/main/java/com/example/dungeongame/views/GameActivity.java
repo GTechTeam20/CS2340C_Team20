@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -84,8 +82,7 @@ public class GameActivity extends AppCompatActivity {
                     score -= 1;
                     updateScore();
                     handler.postDelayed(this, DELAY_MILLIS);
-                    // textViewPlayerName.setText("Player X: " + playerX + "\nPlayer Y: " + playerY);
-                } else {
+                    } else {
                     Leaderboard.getLeaderboard().addEntry(playerName, score, new Date());
                     Intent endingIntent = new Intent(GameActivity.this, EndScreen.class);
                     endingIntent.putExtra("score", score);
@@ -135,18 +132,20 @@ public class GameActivity extends AppCompatActivity {
         int newX = 0;
         int newY = 0;
         switch (keyCode) {
-            case KeyEvent.KEYCODE_DPAD_LEFT:
-                newX -= 20;
-                break;
-            case KeyEvent.KEYCODE_DPAD_RIGHT:
-                newX += 20;
-                break;
-            case KeyEvent.KEYCODE_DPAD_UP:
-                newY -= 20;
-                break;
-            case KeyEvent.KEYCODE_DPAD_DOWN:
-                newY += 20;
-                break;
+        case KeyEvent.KEYCODE_DPAD_LEFT:
+            newX -= 20;
+            break;
+        case KeyEvent.KEYCODE_DPAD_RIGHT:
+            newX += 20;
+            break;
+        case KeyEvent.KEYCODE_DPAD_UP:
+            newY -= 20;
+            break;
+        case KeyEvent.KEYCODE_DPAD_DOWN:
+            newY += 20;
+            break;
+        default:
+            break;
         }
 
         if (newX != 0 || newY != 0) {
@@ -162,11 +161,5 @@ public class GameActivity extends AppCompatActivity {
         }
 
         return true;
-    }
-    public int getPlayerX() {
-        return playerX;
-    }
-    public int getPlayerY() {
-        return playerY;
     }
 }

@@ -5,8 +5,11 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 import com.example.dungeongame.model.Player;
+import com.example.dungeongame.model.Sprite;
+
 public class PlayerUnitTest {
     Player player = Player.getInstance();
+
 
     @Test
     public void testOutOfMapCheckerIsTrue() {
@@ -19,4 +22,52 @@ public class PlayerUnitTest {
         assertEquals(false, player.attemptMove(-15,-11,3));
 
     }
+    @Test
+    public void testStartingPlayerX() {
+        player.resetPosition(0);
+        int xVal = player.getPlayerX();
+        assertEquals(xVal, 100);
+    }
+    @Test
+    public void testStartingPlayerY() {
+        player.resetPosition(0);
+        int yVal = player.getPlayerY();
+        assertEquals(yVal, 700);
+    }
+
+    @Test
+    public void checkDoor1() {
+        player.resetPosition(0);
+        assertEquals(player.attemptMove(-600, -100, 0), true);
+    }
+
+    @Test
+    public void checkDoor2() {
+        player.resetPosition(0);
+        assertEquals(player.attemptMove(-100, 400, 0), false);
+    }
+
+    @Test
+    public void checkDoor3() {
+        player.resetPosition(0);
+        assertEquals(player.attemptMove(-600, -100, 0), true);
+    }
+
+    @Test
+    public void checkInBounds() {
+        assertEquals(player.checkCollisions(0, 500, 0), 1);
+    }
+
+    @Test
+    public void checkOutBounds1() {
+        assertEquals(player.checkCollisions(1000, 0, 0), 0);
+    }
+
+    @Test
+    public void checkOutBounds2() {
+        assertEquals(player.checkCollisions(0, 1000, 0), 0);
+    }
+
+
+
 }

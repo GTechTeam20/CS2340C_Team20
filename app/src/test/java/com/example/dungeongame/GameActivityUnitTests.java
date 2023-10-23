@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+import com.example.dungeongame.model.Player;
 import com.example.dungeongame.views.GameActivity;
 
 public class GameActivityUnitTests {
@@ -39,13 +40,5 @@ public class GameActivityUnitTests {
 
         // Verify that the starting health is set to 50 for "Hard" difficulty
         assertEquals(50, startingHealth);
-    }
-    @Test public void testStartingPlayerX() {
-        int xVal = gameActivity.getPlayerX();
-        assertEquals(xVal, 100);
-    }
-    @Test public void testStartingPlayerY() {
-        int yVal = gameActivity.getPlayerX();
-        assertEquals(yVal, 700);
     }
 }
