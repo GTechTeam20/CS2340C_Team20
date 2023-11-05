@@ -8,21 +8,13 @@
     tools:context=".views.GameActivity">
 
     <!-- Display Player Name -->
-    <TextView
-        android:id="@+id/textViewPlayerName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Player Name: "
-        android:textSize="18sp"
-        android:layout_marginTop="16dp" />
+    <com.example.dungeongame.views.GameCanvas
+        android:id="@+id/game_canvas"
+        android:layout_width="1000dp"
+        android:layout_height="2000dp"
+        android:layout_centerInParent="true"/>
 
     <!-- Display Room Background -->
-    <ImageView
-        android:id="@+id/roomImageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/textViewScore"
-        android:layout_marginTop="8dp" />
 
     <!-- Display Character Sprite -->
 
@@ -31,49 +23,7 @@
     <!-- Display Player's Starting Health -->
 
     <!-- Button to Navigate to Next Room -->
-    <Button
-        android:id="@+id/btnNextRoom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Next Room"
-        android:layout_below="@+id/textViewStartingHealth"
-        android:layout_marginTop="24dp" />
 
     <!-- Display Score -->
 
-    <TextView
-        android:id="@+id/textViewScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewPlayerName"
-        android:layout_marginTop="24dp"
-        android:text="Score: 10"
-        android:textSize="18sp" />
-
-    <ImageView
-        android:id="@+id/imageViewCharacter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:contentDescription="Character"
-        android:scaleX=".15"
-        android:scaleY=".15" />
-
-    <ImageView
-        android:id="@+id/ibCharacter1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:scaleType="fitCenter" />
-
-    <ImageView
-        android:id="@+id/ibCharacter2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:scaleType="fitCenter" />
-
-    <ImageView
-        android:id="@+id/ibCharacter3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:scaleType="fitCenter" />
 </RelativeLayout>

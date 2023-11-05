@@ -1,9 +1,12 @@
 package com.example.dungeongame.views;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,7 +50,14 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_game);
+
+        GameCanvas mainCanvas = findViewById(R.id.game_canvas);
+
+
+
+
 
         Intent intent = getIntent();
         String playerName = intent.getStringExtra("playerName");
@@ -55,30 +65,19 @@ public class GameActivity extends AppCompatActivity {
         String difficulty = intent.getStringExtra("selectedDifficulty");
         int startingHealth = getStartingHealthForDifficulty(difficulty);
 
-        TextView textViewPlayerName = findViewById(R.id.textViewPlayerName);
-        textViewScore = findViewById(R.id.textViewScore);
-        imageViewCharacter = findViewById(R.id.imageViewCharacter);
-        playerSprite = new Sprite(10, 10, imageViewCharacter);
-        Player player = Player.getInstance();
-        player.setSprite(playerSprite);
-        player.resetPosition(0);
-        inputSubscriber = player;
-        roomImageView = findViewById(R.id.roomImageView);
 
-        textViewPlayerName.setText("Player Name: " + playerName);
-        textViewScore.setText("Score: " + score);
 
-        setCharacterImage(selectedCharacter);
-        setRoomBackground(currentRoom);
+        // setCharacterImage(selectedCharacter);
+        // setRoomBackground(currentRoom);
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                if (1  + 1 == 2){
+                    return;
+                }
                 if (score > 0 && !endGame) {
-                    if (score == 1000) {
-                        player.resetPosition(0);
-                    }
                     score -= 1;
                     updateScore();
                     handler.postDelayed(this, DELAY_MILLIS);
