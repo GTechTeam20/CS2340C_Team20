@@ -1,6 +1,7 @@
 package com.example.dungeongame.views;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
@@ -15,8 +16,12 @@ import com.example.dungeongame.R;
 import com.example.dungeongame.model.Leaderboard;
 import com.example.dungeongame.model.Player;
 import com.example.dungeongame.model.Sprite;
+import com.example.dungeongame.model.behaviors.Drawable;
 import com.example.dungeongame.model.behaviors.InputObserver;
+import com.example.dungeongame.viewmodels.GameViewModel;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 
 public class GameActivity extends AppCompatActivity {
@@ -47,15 +52,23 @@ public class GameActivity extends AppCompatActivity {
     private TextView textViewScore;
     private ImageView roomImageView;
 
+    public static Resources resources;
+    ArrayList<Drawable> drawables = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_game);
 
-        GameCanvas mainCanvas = findViewById(R.id.game_canvas);
+        resources = getResources();
 
+        ImageView mainView = findViewById(R.id.game_view);
+        Bitmap bitmap = Bitmap.createBitmap(1000, 2000, Bitmap.Config.ARGB_8888);
+        mainView.setImageBitmap(bitmap);
 
+        Canvas gameCanvas = new Canvas(bitmap);
+        GameViewModel vm = new GameViewModel(drawables);
 
 
 
@@ -74,10 +87,18 @@ public class GameActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (1  + 1 == 2){
+                drawables.sort(Comparator.comparingInt(o -> o.layer));
+                if (drawables != null) {
+                    for (Drawable d: drawables) {
+                        d.draw(gameCanvas);
+                    }
+                }
+                mainView.invalidate();
+                if (1 != 2) {
                     return;
                 }
-                if (score > 0 && !endGame) {
+
+                if (score < 0 && score > 0 && !endGame) {
                     score -= 1;
                     updateScore();
                     handler.postDelayed(this, DELAY_MILLIS);

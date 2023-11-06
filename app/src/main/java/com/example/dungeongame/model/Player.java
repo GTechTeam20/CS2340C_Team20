@@ -1,12 +1,22 @@
 package com.example.dungeongame.model;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+
+import com.example.dungeongame.R;
+import com.example.dungeongame.model.behaviors.Drawable;
 import com.example.dungeongame.model.behaviors.InputObserver;
+import com.example.dungeongame.views.GameActivity;
 
 // Layout for the singleton user class
-public class Player implements InputObserver {
+public class Player implements InputObserver, Drawable {
     private int playerX;
     private int playerY;
-    private Sprite sprite;
+
+    private Bitmap sprite;
     private int[][] startingPosition = {
             {100, 700},
             {100, 700},
@@ -14,22 +24,18 @@ public class Player implements InputObserver {
 
 
     private Player() {
-        playerX = 0;
-        playerY = 0;
+        sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.monkey);
+        playerX = 500;
+        playerY = 500;
     }
     private static Player instance = null;
 
     public static Player getInstance() {
-
         if (instance == null) {
             instance = new Player();
         }
 
         return instance;
-    }
-
-    public void setSprite(Sprite sprite) {
-        this.sprite = sprite;
     }
     @Override
     public boolean attemptMove(int x, int y, int currentRoom) {
@@ -42,11 +48,13 @@ public class Player implements InputObserver {
         if (collision == 1) {
             playerX = newX;
             playerY = newY;
-            if (sprite != null) {
-                sprite.updateSpritePosition(playerX, playerY);
-            }
         }
         return false;
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        canvas.drawBitmap(sprite, playerX, playerY, new Paint());
     }
 
     public int checkCollisions(int x, int y, int currentRoom) {
@@ -83,9 +91,6 @@ public class Player implements InputObserver {
     public void resetPosition(int room) {
         playerX = startingPosition[room][0];
         playerY = startingPosition[room][1];
-        if (sprite != null) {
-            sprite.updateSpritePosition(playerX, playerY);
-        }
     }
 
     public int getPlayerX() {
