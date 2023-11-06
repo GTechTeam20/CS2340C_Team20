@@ -7,15 +7,12 @@ import android.graphics.Canvas;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dungeongame.R;
 import com.example.dungeongame.model.Leaderboard;
-import com.example.dungeongame.model.Player;
-import com.example.dungeongame.model.Sprite;
 import com.example.dungeongame.model.behaviors.Drawable;
 import com.example.dungeongame.model.behaviors.InputObserver;
 import com.example.dungeongame.viewmodels.GameViewModel;
@@ -47,13 +44,10 @@ public class GameActivity extends AppCompatActivity {
         R.drawable.room3
     };
 
-    private ImageView imageViewCharacter;
-    private Sprite playerSprite;
-    private TextView textViewScore;
-    private ImageView roomImageView;
-
     public static Resources resources;
     ArrayList<Drawable> drawables = new ArrayList<>();
+
+    GameViewModel vm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +62,7 @@ public class GameActivity extends AppCompatActivity {
         mainView.setImageBitmap(bitmap);
 
         Canvas gameCanvas = new Canvas(bitmap);
-        GameViewModel vm = new GameViewModel(drawables);
+        vm = new GameViewModel(drawables);
 
 
 
@@ -77,11 +71,6 @@ public class GameActivity extends AppCompatActivity {
         String selectedCharacter = intent.getStringExtra("selectedCharacter");
         String difficulty = intent.getStringExtra("selectedDifficulty");
         int startingHealth = getStartingHealthForDifficulty(difficulty);
-
-
-
-        // setCharacterImage(selectedCharacter);
-        // setRoomBackground(currentRoom);
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -100,7 +89,6 @@ public class GameActivity extends AppCompatActivity {
 
                 if (score < 0 && score > 0 && !endGame) {
                     score -= 1;
-                    updateScore();
                     handler.postDelayed(this, DELAY_MILLIS);
                     } else {
                     Leaderboard.getLeaderboard().addEntry(playerName, score, new Date());
@@ -113,26 +101,6 @@ public class GameActivity extends AppCompatActivity {
         }, DELAY_MILLIS);
     }
 
-
-    private void setRoomBackground(int roomNumber) {
-        if (roomNumber >= 0 && roomNumber < roomBackgrounds.length) {
-            roomImageView.setImageResource(roomBackgrounds[roomNumber]);
-        }
-    }
-
-    public void setCharacterImage(String selectedCharacter) {
-        if ("monkey".equals(selectedCharacter)) {
-            imageViewCharacter.setImageResource(R.drawable.monkey);
-        } else if ("pickle".equals(selectedCharacter)) {
-            imageViewCharacter.setImageResource(R.drawable.pickle);
-        } else if ("banana".equals(selectedCharacter)) {
-            imageViewCharacter.setImageResource(R.drawable.banana);
-        }
-    }
-
-    private void updateScore() {
-        textViewScore.setText("Score: " + score);
-    }
     public int getStartingHealthForDifficulty(String difficulty) {
         int startingHealth = 0;
 
@@ -167,18 +135,7 @@ public class GameActivity extends AppCompatActivity {
         default:
             break;
         }
-
-        if (newX != 0 || newY != 0) {
-            if (inputSubscriber.attemptMove(newX, newY, currentRoom)) {
-                currentRoom++;
-                if (currentRoom == 3) {
-                    endGame = true;
-                } else {
-                    setRoomBackground(currentRoom);
-                    Player.getInstance().resetPosition(currentRoom);
-                }
-            }
-        }
+        //vm.getInput(keyCode, event);
 
         return true;
     }

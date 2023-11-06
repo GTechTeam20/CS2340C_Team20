@@ -1,12 +1,9 @@
 package com.example.dungeongame.viewmodels;
 
-import android.renderscript.ScriptGroup;
 import android.view.KeyEvent;
 
 import com.example.dungeongame.model.Player;
 import com.example.dungeongame.model.behaviors.Drawable;
-import com.example.dungeongame.model.behaviors.InputObserver;
-import com.example.dungeongame.views.GameCanvas;
 
 import java.util.ArrayList;
 

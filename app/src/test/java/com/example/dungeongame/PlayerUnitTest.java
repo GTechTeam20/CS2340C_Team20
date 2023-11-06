@@ -1,11 +1,9 @@
 package com.example.dungeongame;
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 import com.example.dungeongame.model.Player;
-import com.example.dungeongame.model.Sprite;
 
 public class PlayerUnitTest {
     Player player = Player.getInstance();
