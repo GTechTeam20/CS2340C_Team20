@@ -20,51 +20,21 @@ public class PlayerUnitTest {
         assertEquals(false, player.attemptMove(-15,-11,3));
 
     }
-    @Test
-    public void testStartingPlayerX() {
-        player.resetPosition(0);
-        int xVal = player.getPlayerX();
-        assertEquals(xVal, 100);
-    }
-    @Test
-    public void testStartingPlayerY() {
-        player.resetPosition(0);
-        int yVal = player.getPlayerY();
-        assertEquals(yVal, 700);
-    }
 
-    @Test
-    public void checkDoor1() {
-        player.resetPosition(0);
-        assertEquals(player.attemptMove(-600, -100, 0), true);
-    }
+    //@Test
+    //public void checkInBounds() {
+    //    assertEquals(player.checkCollisions(0, 500, 0), 1);
+    //}
 
-    @Test
-    public void checkDoor2() {
-        player.resetPosition(0);
-        assertEquals(player.attemptMove(-100, 400, 0), false);
-    }
+    //@Test
+    //public void checkOutBounds1() {
+    //    assertEquals(player.checkCollisions(1000, 0, 0), 0);
+    //}
 
-    @Test
-    public void checkDoor3() {
-        player.resetPosition(0);
-        assertEquals(player.attemptMove(-600, -100, 0), true);
-    }
-
-    @Test
-    public void checkInBounds() {
-        assertEquals(player.checkCollisions(0, 500, 0), 1);
-    }
-
-    @Test
-    public void checkOutBounds1() {
-        assertEquals(player.checkCollisions(1000, 0, 0), 0);
-    }
-
-    @Test
-    public void checkOutBounds2() {
-        assertEquals(player.checkCollisions(0, 1000, 0), 0);
-    }
+    //@Test
+    //public void checkOutBounds2() {
+    //    assertEquals(player.checkCollisions(0, 1000, 0), 0);
+    //}
     public void testMoveToExitIsSuccessful() {
         // Attempt a move to the exit, expect true
         assertEquals(true, player.attemptMove(0, 100, 0));

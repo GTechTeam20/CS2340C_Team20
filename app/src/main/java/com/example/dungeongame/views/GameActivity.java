@@ -26,24 +26,6 @@ public class GameActivity extends AppCompatActivity {
     private int score = 1000; // Starting score
     private int currentRoom = 0;
 
-    private boolean endGame = false;
-
-    private int playerX = 100;
-    private int playerY = 700;
-
-    private int[][] startingPosition = {
-            {100, 700},
-            {100, 700},
-            {100, 700}};
-
-    private InputObserver inputSubscriber;
-
-    private int[] roomBackgrounds = {
-        R.drawable.room1,
-        R.drawable.room2,
-        R.drawable.room3
-    };
-
     public static Resources resources;
     ArrayList<Drawable> drawables = new ArrayList<>();
 
@@ -64,8 +46,6 @@ public class GameActivity extends AppCompatActivity {
         Canvas gameCanvas = new Canvas(bitmap);
         vm = new GameViewModel(drawables);
 
-
-
         Intent intent = getIntent();
         String playerName = intent.getStringExtra("playerName");
         String selectedCharacter = intent.getStringExtra("selectedCharacter");
@@ -76,26 +56,21 @@ public class GameActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                drawables.sort(Comparator.comparingInt(o -> o.layer));
                 if (drawables != null) {
+                    drawables.sort(Comparator.comparingInt(Drawable::getLayer));
                     for (Drawable d: drawables) {
                         d.draw(gameCanvas);
                     }
                 }
                 mainView.invalidate();
-                if (1 != 2) {
-                    return;
-                }
-
-                if (score < 0 && score > 0 && !endGame) {
-                    score -= 1;
-                    handler.postDelayed(this, DELAY_MILLIS);
-                    } else {
-                    Leaderboard.getLeaderboard().addEntry(playerName, score, new Date());
+                if (vm.GameFinished()) {
+                    Leaderboard.getLeaderboard().addEntry(playerName, vm.getScore(), new Date());
                     Intent endingIntent = new Intent(GameActivity.this, EndScreen.class);
                     endingIntent.putExtra("score", score);
                     startActivity(endingIntent);
                     finish();
+                }else {
+                    handler.postDelayed(this, DELAY_MILLIS);
                 }
             }
         }, DELAY_MILLIS);
@@ -117,25 +92,7 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        int newX = 0;
-        int newY = 0;
-        switch (keyCode) {
-        case KeyEvent.KEYCODE_DPAD_LEFT:
-            newX -= 20;
-            break;
-        case KeyEvent.KEYCODE_DPAD_RIGHT:
-            newX += 20;
-            break;
-        case KeyEvent.KEYCODE_DPAD_UP:
-            newY -= 20;
-            break;
-        case KeyEvent.KEYCODE_DPAD_DOWN:
-            newY += 20;
-            break;
-        default:
-            break;
-        }
-        //vm.getInput(keyCode, event);
+        vm.getInput(keyCode, event);
 
         return true;
     }
