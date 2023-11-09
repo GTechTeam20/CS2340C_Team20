@@ -13,8 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dungeongame.R;
 import com.example.dungeongame.model.Leaderboard;
-import com.example.dungeongame.model.behaviors.Drawable;
-import com.example.dungeongame.model.behaviors.InputObserver;
+import com.example.dungeongame.model.behaviors.DrawableSprite;
 import com.example.dungeongame.viewmodels.GameViewModel;
 
 import java.util.ArrayList;
@@ -27,7 +26,9 @@ public class GameActivity extends AppCompatActivity {
     private int currentRoom = 0;
 
     public static Resources resources;
-    ArrayList<Drawable> drawables = new ArrayList<>();
+
+    public static int canvasDensity = 440;
+    ArrayList<DrawableSprite> drawables = new ArrayList<>();
 
     GameViewModel vm;
 
@@ -41,7 +42,9 @@ public class GameActivity extends AppCompatActivity {
 
         ImageView mainView = findViewById(R.id.game_view);
         Bitmap bitmap = Bitmap.createBitmap(1000, 2000, Bitmap.Config.ARGB_8888);
+        canvasDensity = bitmap.getDensity();
         mainView.setImageBitmap(bitmap);
+
 
         Canvas gameCanvas = new Canvas(bitmap);
         vm = new GameViewModel(drawables);
@@ -57,8 +60,8 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (drawables != null) {
-                    drawables.sort(Comparator.comparingInt(Drawable::getLayer));
-                    for (Drawable d: drawables) {
+                    drawables.sort(Comparator.comparingInt(DrawableSprite::getLayer));
+                    for (DrawableSprite d: drawables) {
                         d.draw(gameCanvas);
                     }
                 }

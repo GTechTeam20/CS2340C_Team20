@@ -4,13 +4,13 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import com.example.dungeongame.model.behaviors.Drawable;
+import com.example.dungeongame.model.behaviors.DrawableSprite;
 import com.example.dungeongame.model.collisions.CollisionBox;
 import com.example.dungeongame.model.collisions.CollisionManager;
 
 import java.util.ArrayList;
 
-public abstract class DungeonRoom implements Drawable {
+public abstract class DungeonRoom implements DrawableSprite {
     Bitmap background;
     ArrayList<CollisionBox> collisionBoxes = new ArrayList<>();
     @Override

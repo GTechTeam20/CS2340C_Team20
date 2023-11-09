@@ -6,7 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import com.example.dungeongame.R;
-import com.example.dungeongame.model.behaviors.Drawable;
+import com.example.dungeongame.model.behaviors.DrawableSprite;
 import com.example.dungeongame.model.behaviors.InputObserver;
 import com.example.dungeongame.model.collisions.CollisionBox;
 import com.example.dungeongame.model.collisions.CollisionManager;
@@ -14,15 +14,19 @@ import com.example.dungeongame.model.collisions.CollisionType;
 import com.example.dungeongame.views.GameActivity;
 
 // Layout for the singleton user class
-public class Player implements InputObserver, Drawable {
+public class Player implements InputObserver, DrawableSprite {
+
+    final int playerWidth = 50;
     private int playerX;
     private int playerY;
     public CollisionBox collider;
     private Bitmap sprite;
 
     private Player() {
-        sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.monkey);
-        collider = new CollisionBox(0, 0, 20, 20, CollisionType.PLAYER);
+        // Note: Run the adjust density function after making a sprite, or it will scale wrong
+        sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.player1);
+        adjustDensity(sprite, playerWidth);
+        collider = new CollisionBox(0, 0, playerWidth, playerWidth, CollisionType.PLAYER);
         updatePosition(500, 500);
     }
     private static Player instance = null;
@@ -52,6 +56,7 @@ public class Player implements InputObserver, Drawable {
     @Override
     public void draw(Canvas canvas) {
         canvas.drawBitmap(sprite, playerX, playerY, new Paint());
+
     }
     @Override
     public int getLayer() {

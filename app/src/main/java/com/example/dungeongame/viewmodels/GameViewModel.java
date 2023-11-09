@@ -3,7 +3,7 @@ package com.example.dungeongame.viewmodels;
 import android.view.KeyEvent;
 
 import com.example.dungeongame.model.Player;
-import com.example.dungeongame.model.behaviors.Drawable;
+import com.example.dungeongame.model.behaviors.DrawableSprite;
 import com.example.dungeongame.model.rooms.DungeonRoom;
 import com.example.dungeongame.model.rooms.Room1;
 
@@ -13,9 +13,9 @@ public class GameViewModel {
     int currentRoom;
     DungeonRoom roomObject;
     int score;
-    ArrayList<Drawable> drawables;
+    ArrayList<DrawableSprite> drawables;
 
-    public GameViewModel(ArrayList<Drawable> drawables) {
+    public GameViewModel(ArrayList<DrawableSprite> drawables) {
         this.drawables = drawables;
 
         score = 0;
@@ -25,6 +25,7 @@ public class GameViewModel {
 
         // DungeonRoom
         setRoom(1);
+        drawables.add(roomObject);
     }
 
     public void getInput(int keyCode, KeyEvent event) {
@@ -57,10 +58,11 @@ public class GameViewModel {
         currentRoom = newRoom;
         clearRoom();
         roomObject = new Room1();
-
+        drawables.add(roomObject);
     }
     public void clearRoom() {
         if (roomObject != null) {
+            drawables.remove(roomObject);
             roomObject.deleteRoom();
         }
     }

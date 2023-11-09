@@ -11,15 +11,16 @@ import com.example.dungeongame.views.GameActivity;
 public class Room1 extends DungeonRoom {
     public Room1 () {
         this.background = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.room1);
-        Player.getInstance().updatePosition(500, 500);
-        this.addWall(new CollisionBox(0, 0, 20, 2000, CollisionType.WALL));
-        this.addWall(new CollisionBox(980, 0, 20, 2000, CollisionType.WALL));
-        this.addWall(new CollisionBox(0, 0, 450, 20, CollisionType.WALL));
-        this.addWall(new CollisionBox(450, 0, 100, 20, CollisionType.DOOR));
-        this.addWall(new CollisionBox(550, 0, 20, 20, CollisionType.WALL));
-        this.addWall(new CollisionBox(0, 1980, 20, 20, CollisionType.WALL));
-        this.addWall(new CollisionBox(450, 1980, 100, 20, CollisionType.DOOR));
-        this.addWall(new CollisionBox(550, 1980, 20, 20, CollisionType.WALL));
+        adjustDensity(this.background, 1000);
+        Player.getInstance().updatePosition(500, 1000);
+        this.addWall(new CollisionBox(0, 0, 50, 2000, CollisionType.WALL));
+        this.addWall(new CollisionBox(950, 0, 50, 2000, CollisionType.WALL));
+        this.addWall(new CollisionBox(0, 0, 450, 50, CollisionType.WALL));
+        this.addWall(new CollisionBox(450, 0, 100, 50, CollisionType.DOOR));
+        this.addWall(new CollisionBox(550, 0, 450, 50, CollisionType.WALL));
+        this.addWall(new CollisionBox(0, 1950, 450, 50, CollisionType.WALL));
+        this.addWall(new CollisionBox(450, 1950, 100, 50, CollisionType.DOOR));
+        this.addWall(new CollisionBox(550, 1950, 450, 50, CollisionType.WALL));
     }
 
 }
