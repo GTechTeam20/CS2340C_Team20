@@ -6,6 +6,8 @@ import com.example.dungeongame.model.Player;
 import com.example.dungeongame.model.behaviors.DrawableSprite;
 import com.example.dungeongame.model.rooms.DungeonRoom;
 import com.example.dungeongame.model.rooms.Room1;
+import com.example.dungeongame.model.rooms.Room2;
+import com.example.dungeongame.model.rooms.Room3;
 
 import java.util.ArrayList;
 
