@@ -21,11 +21,8 @@ public class Player implements InputObserver, DrawableSprite {
     private int playerY;
     public CollisionBox collider;
     private Bitmap sprite;
-
+    private String sprite_string;
     private Player() {
-        // Note: Run the adjust density function after making a sprite, or it will scale wrong
-        sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.player1);
-        adjustDensity(sprite, playerWidth);
         collider = new CollisionBox(0, 0, playerWidth, playerWidth, CollisionType.PLAYER);
         updatePosition(500, 500);
     }
@@ -55,6 +52,16 @@ public class Player implements InputObserver, DrawableSprite {
 
     @Override
     public void draw(Canvas canvas) {
+        // Note: Run the adjust density function after making a sprite, or it will scale wrong
+        if (sprite_string.equals("pickle")) {
+            sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.pickle);
+        } else if (sprite_string.equals("monkey")) {
+            sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.monkey);
+        } else if (sprite_string.equals("banana")) {
+            sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.banana);
+        }
+
+        adjustDensity(sprite, playerWidth);
         canvas.drawBitmap(sprite, playerX, playerY, new Paint());
 
     }
@@ -66,5 +73,9 @@ public class Player implements InputObserver, DrawableSprite {
         playerX = x;
         playerY = y;
         collider.updatePostion(x, y);
+    }
+
+    public void setSprite(String Sprite) {
+        sprite_string = Sprite;
     }
 }
