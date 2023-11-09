@@ -57,8 +57,14 @@ public class GameViewModel {
     private void setRoom(int newRoom) {
         currentRoom = newRoom;
         clearRoom();
-        roomObject = new Room1();
-        drawables.add(roomObject);
+        if (newRoom == 2) {
+            roomObject = new Room2();
+            drawables.add(roomObject);
+        }
+        if (newRoom == 3) {
+            roomObject = new Room3();
+            drawables.add(roomObject);
+        }
     }
     public void clearRoom() {
         if (roomObject != null) {
