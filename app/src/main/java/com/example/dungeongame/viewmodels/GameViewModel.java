@@ -27,7 +27,6 @@ public class GameViewModel {
 
         // DungeonRoom
         setRoom(1);
-        drawables.add(roomObject);
     }
 
     public void getInput(int keyCode, KeyEvent event) {
@@ -59,6 +58,10 @@ public class GameViewModel {
     private void setRoom(int newRoom) {
         currentRoom = newRoom;
         clearRoom();
+        if (newRoom == 1) {
+            roomObject = new Room1();
+            drawables.add(roomObject);
+        }
         if (newRoom == 2) {
             roomObject = new Room2();
             drawables.add(roomObject);
@@ -75,7 +78,7 @@ public class GameViewModel {
         }
     }
     public boolean GameFinished() {
-        return currentRoom == 3;
+        return currentRoom == 4;
     }
     public int getScore() {
         return score;
