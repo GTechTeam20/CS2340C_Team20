@@ -16,7 +16,7 @@ import com.example.dungeongame.views.GameActivity;
 // Layout for the singleton user class
 public class Player implements InputObserver, DrawableSprite {
 
-    final int playerWidth = 50;
+    final int playerWidth = 100;
     private int playerX;
     private int playerY;
     public CollisionBox collider;
