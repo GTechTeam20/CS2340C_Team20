@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dungeongame.R;
 import com.example.dungeongame.model.Leaderboard;
+import com.example.dungeongame.model.Player;
 import com.example.dungeongame.model.behaviors.DrawableSprite;
 import com.example.dungeongame.viewmodels.GameViewModel;
 
@@ -54,7 +55,8 @@ public class GameActivity extends AppCompatActivity {
         String selectedCharacter = intent.getStringExtra("selectedCharacter");
         String difficulty = intent.getStringExtra("selectedDifficulty");
         int startingHealth = getStartingHealthForDifficulty(difficulty);
-
+        Player playerInst = Player.getInstance();
+        playerInst.setSprite(selectedCharacter);
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
