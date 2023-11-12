@@ -1,6 +1,15 @@
 package com.example.dungeongame.model.enemy;
 
-interface Enemy {
-    abstract void attackPlayer();
-    abstract void move(int direction);
+import android.graphics.Canvas;
+
+import com.example.dungeongame.model.collisions.CollisionBox;
+
+public interface Enemy {
+
+    void updatePosition();
+
+    void draw(Canvas canvas);
+
+    int getLayer();
+    CollisionBox getCollisionBox();
 }

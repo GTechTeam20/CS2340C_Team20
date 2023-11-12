@@ -19,13 +19,17 @@ public class Player implements InputObserver, DrawableSprite {
     final int playerWidth = 100;
     private int playerX;
     private int playerY;
-    public CollisionBox collider;
+    private int playerHealth;
+    private CollisionBox collider;
     private Bitmap sprite;
     private String sprite_string;
+
     private Player() {
         collider = new CollisionBox(0, 0, playerWidth, playerWidth, CollisionType.PLAYER);
         updatePosition(500, 500);
+        playerHealth = 100;
     }
+
     private static Player instance = null;
 
     public static Player getInstance() {
@@ -35,16 +39,21 @@ public class Player implements InputObserver, DrawableSprite {
 
         return instance;
     }
+
     @Override
     public boolean attemptMove(int x, int y, int currentRoom) {
         int newX = playerX + x;
         int newY = playerY + y;
         CollisionType collisionType = CollisionManager.getInstance()
-                .checkFutureCollisions(collider, newX, newY);
+                .checkFutureCollisions(this, newX, newY);
         if (collisionType == CollisionType.NONE) {
             updatePosition(newX, newY);
         }
-        if (collisionType == CollisionType.DOOR) {
+        if (collisionType == CollisionType.ENEMY) {
+            // Saarthak: change this based on the difficulty
+            reducePlayerHealth(10);
+            System.out.println("Enemy Collision Detected! Player Health: " + getPlayerHealth());
+        } else if (collisionType == CollisionType.DOOR) {
             return true;
         }
         return false;
@@ -52,23 +61,24 @@ public class Player implements InputObserver, DrawableSprite {
 
     @Override
     public void draw(Canvas canvas) {
-        // Note: Run the adjust density function after making a sprite, or it will scale wrong
-        if (sprite_string.equals("pickle")) {
-            sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.pickle);
-        } else if (sprite_string.equals("monkey")) {
-            sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.monkey);
-        } else if (sprite_string.equals("banana")) {
-            sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.banana);
+        if (sprite_string != null) {
+            if (sprite_string.equals("pickle")) {
+                sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.pickle);
+            } else if (sprite_string.equals("monkey")) {
+                sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.monkey);
+            } else if (sprite_string.equals("banana")) {
+                sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.banana);
+            }
         }
-
         adjustDensity(sprite, playerWidth);
         canvas.drawBitmap(sprite, playerX, playerY, new Paint());
-
     }
+
     @Override
     public int getLayer() {
         return 1;
     }
+
     public void updatePosition(int x, int y) {
         playerX = x;
         playerY = y;
@@ -77,5 +87,25 @@ public class Player implements InputObserver, DrawableSprite {
 
     public void setSprite(String Sprite) {
         sprite_string = Sprite;
+    }
+
+    public int getPlayerHealth() {
+        return playerHealth;
+    }
+
+    private void reducePlayerHealth(int amount) {
+        playerHealth -= amount;
+        if (playerHealth <= 0) {
+            handlePlayerDefeat();
+        }
+    }
+
+    private void handlePlayerDefeat() {
+        // Saarthak: implement this
+    }
+
+    // New method to get the CollisionBox of the player
+    public CollisionBox getCollisionBox() {
+        return collider;
     }
 }
