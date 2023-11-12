@@ -63,11 +63,11 @@ public class Player implements InputObserver, DrawableSprite {
     public void draw(Canvas canvas) {
         if (sprite_string != null) {
             if (sprite_string.equals("pickle")) {
-                sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.pickle);
+                sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.purpleplayer);
             } else if (sprite_string.equals("monkey")) {
-                sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.monkey);
+                sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.greenplayer);
             } else if (sprite_string.equals("banana")) {
-                sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.banana);
+                sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.blueplayer);
             }
         }
         adjustDensity(sprite, playerWidth);

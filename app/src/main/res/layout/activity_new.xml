@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="150sp"
             android:layout_weight="1"
-            android:src="@drawable/monkey"
+            android:src="@drawable/greenplayer"
             android:scaleType="fitCenter"
             android:contentDescription="Character 1" />
 
@@ -85,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="150sp"
             android:layout_weight="1"
-            android:src="@drawable/pickle"
+            android:src="@drawable/purpleplayer"
             android:scaleType="fitCenter"
             android:contentDescription="Character 2" />
 
@@ -94,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="150sp"
             android:layout_weight="1"
-            android:src="@drawable/banana"
+            android:src="@drawable/blueplayer"
             android:scaleType="fitCenter"
             android:contentDescription="Character 3" />
     </LinearLayout>
