@@ -1,12 +1,16 @@
 package com.example.dungeongame.model.collisions;
 
+import com.example.dungeongame.model.Player;
+import com.example.dungeongame.model.behaviors.DrawableSprite;
+import com.example.dungeongame.model.enemy.Enemy;
+
 import java.util.ArrayList;
 
 public class CollisionManager {
     private static CollisionManager instance;
     private ArrayList<CollisionBox> collisions;
 
-    public CollisionManager() {
+    private CollisionManager() {
         collisions = new ArrayList<>();
     }
 
@@ -35,12 +39,24 @@ public class CollisionManager {
                     collider.y < box.y + box.height &&
                     collider.y + collider.height > box.y) {
                 return box.type;
-            };
+            }
         }
         return CollisionType.NONE;
     }
 
-    public CollisionType checkFutureCollisions(CollisionBox collider, int newX, int newY) {
+    public CollisionType checkFutureCollisions(DrawableSprite sprite, int newX, int newY) {
+        CollisionBox collider = null;
+        boolean enemyCollision = false;
+        if (sprite instanceof Enemy) {
+            collider = ((Enemy) sprite).getCollisionBox();
+        } else if (sprite instanceof Player) {
+            collider = ((Player) sprite).getCollisionBox();
+        }
+
+        if (collider == null) {
+            return CollisionType.NONE;
+        }
+
         for (CollisionBox box : collisions) {
             if (box == collider) {
                 continue;
@@ -49,9 +65,24 @@ public class CollisionManager {
                     newX + collider.width > box.x &&
                     newY < box.y + box.height &&
                     newY + collider.height > box.y) {
-                return box.type;
+                if (box.type == CollisionType.ENEMY) {
+                    enemyCollision = true;
+                } else {
+                    return box.type;
+                }
             }
+        }
+
+        // Move the sprite only if there is no wall collision
+        if (sprite instanceof Enemy) {
+            ((Enemy) sprite).updatePosition();
+        } else if (sprite instanceof Player) {
+            ((Player) sprite).updatePosition(newX, newY);
+        }
+        if (enemyCollision) {
+            return CollisionType.ENEMY;
         }
         return CollisionType.NONE;
     }
+
 }
