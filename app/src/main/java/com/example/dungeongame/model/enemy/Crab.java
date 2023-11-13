@@ -11,8 +11,6 @@ import com.example.dungeongame.model.collisions.CollisionBox;
 import com.example.dungeongame.model.collisions.CollisionType;
 import com.example.dungeongame.views.GameActivity;
 
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Crab implements DrawableSprite, Enemy {
 
@@ -20,7 +18,10 @@ public class Crab implements DrawableSprite, Enemy {
     private int enemyY;
     private String imageName;
     private int speed = 8; // Adjust speed as needed
-    private int minX, maxX, minY, maxY;
+    private int minX;
+    private int maxX;
+    private int minY;
+    private int maxY;
     private int enemyWidth = 100;
 
     // CollisionBox associated with the Ghost
@@ -41,7 +42,8 @@ public class Crab implements DrawableSprite, Enemy {
 
     private static Crab instance = null;
 
-    public static Crab getInstance(int x, int y, String imageName, int minX, int maxX, int minY, int maxY) {
+    public static Crab getInstance(int x, int y, String imageName, int minX, int maxX, int minY,
+                                   int maxY) {
         if (instance == null) {
             instance = new Crab(x, y, imageName, minX, maxX, minY, maxY);
         }
@@ -76,7 +78,8 @@ public class Crab implements DrawableSprite, Enemy {
     @Override
     public void draw(Canvas canvas) {
         // Load enemy image from resources based on the imageName
-        Bitmap enemyBitmap = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.crab);
+        Bitmap enemyBitmap = BitmapFactory.decodeResource(GameActivity.getResourcesRef(),
+                R.drawable.crab);
         adjustDensity(enemyBitmap, 100);
         canvas.drawBitmap(enemyBitmap, enemyX, enemyY, new Paint());
     }

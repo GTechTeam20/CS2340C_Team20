@@ -10,6 +10,7 @@ public class EnemyUnitTests {
     Crab crab = Crab.getInstance(200, 300, "crab", 100, 700, 100, 500);
     Ghost ghost = Ghost.getInstance(200, 300, "ghost", 100, 700, 100, 500);
 
+
     @Test
     public void CheckCrabLayer() {
         assertEquals(1, crab.getLayer());

@@ -28,21 +28,6 @@ public class PlayerUnitTest {
         assertEquals(false, player.attemptMove(-15,-11,3));
 
     }
-
-    //@Test
-    //public void checkInBounds() {
-    //    assertEquals(player.checkCollisions(0, 500, 0), 1);
-    //}
-
-    //@Test
-    //public void checkOutBounds1() {
-    //    assertEquals(player.checkCollisions(1000, 0, 0), 0);
-    //}
-
-    //@Test
-    //public void checkOutBounds2() {
-    //    assertEquals(player.checkCollisions(0, 1000, 0), 0);
-    //}
     public void testMoveToExitIsSuccessful() {
         // Attempt a move to the exit, expect true
         assertEquals(true, player.attemptMove(0, 100, 0));

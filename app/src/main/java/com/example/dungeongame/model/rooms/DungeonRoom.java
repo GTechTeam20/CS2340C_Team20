@@ -11,8 +11,8 @@ import com.example.dungeongame.model.collisions.CollisionManager;
 import java.util.ArrayList;
 
 public abstract class DungeonRoom implements DrawableSprite {
-    Bitmap background;
-    ArrayList<CollisionBox> collisionBoxes = new ArrayList<>();
+    protected Bitmap background;
+    protected ArrayList<CollisionBox> collisionBoxes = new ArrayList<>();
     @Override
     public void draw(Canvas canvas) {
         canvas.drawBitmap(background, 0, 0, new Paint());
@@ -34,6 +34,11 @@ public abstract class DungeonRoom implements DrawableSprite {
     public void deleteRoom() {
         deleteColliders();
     }
+
+    public ArrayList<CollisionBox> getCollisionBoxes() {
+        return collisionBoxes;
+    }
+
 
 
 }

@@ -1,6 +1,5 @@
 package com.example.dungeongame.model;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -12,24 +11,20 @@ import com.example.dungeongame.model.behaviors.InputObserver;
 import com.example.dungeongame.model.collisions.CollisionBox;
 import com.example.dungeongame.model.collisions.CollisionManager;
 import com.example.dungeongame.model.collisions.CollisionType;
-import com.example.dungeongame.viewmodels.EndScreenViewModel;
-import com.example.dungeongame.views.EndScreen;
 import com.example.dungeongame.views.GameActivity;
-import com.example.dungeongame.views.NewActivity;
 
-import java.util.Date;
 
 // Layout for the singleton user class
 public class Player implements InputObserver, DrawableSprite {
 
-    final int playerWidth = 80;
-    final int playerHeight = 120;
+    private final int playerWidth = 80;
+    private final int playerHeight = 120;
     private int playerX;
     private int playerY;
     private int playerHealth;
     private CollisionBox collider;
     private Bitmap sprite;
-    private String sprite_string;
+    private String spriteString;
 
     private String difficultyLevel;
 
@@ -63,16 +58,13 @@ public class Player implements InputObserver, DrawableSprite {
                 .checkFutureCollisions(this, newX, newY);
         if (collisionType == CollisionType.NONE) {
             updatePosition(newX, newY);
-        }
-        else if (collisionType == CollisionType.ENEMY) {
+        } else if (collisionType == CollisionType.ENEMY) {
             // Saarthak: change this based on the difficulty
             if (difficultyLevel.equals("Easy")) {
                 reducePlayerHealth(5);
-            }
-            else if (difficultyLevel.equals("Medium")) {
+            } else if (difficultyLevel.equals("Medium")) {
                 reducePlayerHealth(10);
-            }
-            else {
+            } else {
                 reducePlayerHealth(15);
             }
 
@@ -85,13 +77,16 @@ public class Player implements InputObserver, DrawableSprite {
 
     @Override
     public void draw(Canvas canvas) {
-        if (sprite_string != null) {
-            if (sprite_string.equals("pickle")) {
-                sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.purpleplayer);
-            } else if (sprite_string.equals("monkey")) {
-                sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.greenplayer);
-            } else if (sprite_string.equals("banana")) {
-                sprite = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.blueplayer);
+        if (spriteString != null) {
+            if (spriteString.equals("pickle")) {
+                sprite = BitmapFactory.decodeResource(GameActivity.getResourcesRef(),
+                        R.drawable.purpleplayer);
+            } else if (spriteString.equals("monkey")) {
+                sprite = BitmapFactory.decodeResource(GameActivity.getResourcesRef(),
+                        R.drawable.greenplayer);
+            } else if (spriteString.equals("banana")) {
+                sprite = BitmapFactory.decodeResource(GameActivity.getResourcesRef(),
+                        R.drawable.blueplayer);
             }
         }
         adjustDensity(sprite, playerWidth);
@@ -109,8 +104,8 @@ public class Player implements InputObserver, DrawableSprite {
         collider.updatePostion(x, y);
     }
 
-    public void setSprite(String Sprite) {
-        sprite_string = Sprite;
+    public void setSprite(String sprite) {
+        spriteString = sprite;
     }
 
     public int getPlayerHealth() {

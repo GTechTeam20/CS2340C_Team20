@@ -9,8 +9,9 @@ import com.example.dungeongame.model.collisions.CollisionType;
 import com.example.dungeongame.views.GameActivity;
 
 public class Room1 extends DungeonRoom {
-    public Room1 () {
-        this.background = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.room1);
+    public Room1() {
+        this.background = BitmapFactory.decodeResource(GameActivity.getResourcesRef(),
+                R.drawable.room1);
         adjustDensity(this.background, 1000);
         Player.getInstance().updatePosition(500, 1000);
         this.addWall(new CollisionBox(0, 0, 50, 2000, CollisionType.WALL));

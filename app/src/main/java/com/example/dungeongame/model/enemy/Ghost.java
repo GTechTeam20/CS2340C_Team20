@@ -1,7 +1,5 @@
 package com.example.dungeongame.model.enemy;
 
-import static androidx.core.content.res.TypedArrayUtils.getResourceId;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -13,8 +11,6 @@ import com.example.dungeongame.model.collisions.CollisionBox;
 import com.example.dungeongame.model.collisions.CollisionType;
 import com.example.dungeongame.views.GameActivity;
 
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Ghost implements DrawableSprite, Enemy {
 
@@ -22,7 +18,10 @@ public class Ghost implements DrawableSprite, Enemy {
     private int enemyY;
     private String imageName;
     private int speed = 3; // Adjust speed as needed
-    private int minX, maxX, minY, maxY;
+    private int minX;
+    private int maxX;
+    private int minY;
+    private int maxY;
     private int enemyWidth = 100;
 
     // CollisionBox associated with the Ghost
@@ -43,7 +42,8 @@ public class Ghost implements DrawableSprite, Enemy {
 
     private static Ghost instance = null;
 
-    public static Ghost getInstance(int x, int y, String imageName, int minX, int maxX, int minY, int maxY) {
+    public static Ghost getInstance(int x, int y, String imageName, int minX, int maxX, int minY,
+                                    int maxY) {
         if (instance == null) {
             instance = new Ghost(x, y, imageName, minX, maxX, minY, maxY);
         }
@@ -78,7 +78,8 @@ public class Ghost implements DrawableSprite, Enemy {
     @Override
     public void draw(Canvas canvas) {
         // Load enemy image from resources based on the imageName
-        Bitmap enemyBitmap = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.ghost);
+        Bitmap enemyBitmap = BitmapFactory.decodeResource(GameActivity.getResourcesRef(),
+                R.drawable.ghost);
         adjustDensity(enemyBitmap, 100);
         canvas.drawBitmap(enemyBitmap, enemyX, enemyY, new Paint());
     }

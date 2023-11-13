@@ -1,6 +1,5 @@
 package com.example.dungeongame.viewmodels;
 
-import android.content.Intent;
 import android.view.KeyEvent;
 
 import com.example.dungeongame.model.Player;
@@ -17,17 +16,16 @@ import com.example.dungeongame.model.rooms.Room2;
 import com.example.dungeongame.model.rooms.Room3;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class GameViewModel {
-    int currentRoom;
-    DungeonRoom roomObject;
-    int score;
-    ArrayList<DrawableSprite> drawables;
+    private int currentRoom;
+    private DungeonRoom roomObject;
+    private int score;
+    private ArrayList<DrawableSprite> drawables;
 
     // Represent currently active enemies
-    List<DrawableSprite> enemies;
+    private List<DrawableSprite> enemies;
 
     public GameViewModel(ArrayList<DrawableSprite> drawables) {
         this.drawables = drawables;
@@ -47,20 +45,20 @@ public class GameViewModel {
         int newX = 0;
         int newY = 0;
         switch (keyCode) {
-            case KeyEvent.KEYCODE_DPAD_LEFT:
-                newX -= 20;
-                break;
-            case KeyEvent.KEYCODE_DPAD_RIGHT:
-                newX += 20;
-                break;
-            case KeyEvent.KEYCODE_DPAD_UP:
-                newY -= 20;
-                break;
-            case KeyEvent.KEYCODE_DPAD_DOWN:
-                newY += 20;
-                break;
-            default:
-                break;
+        case KeyEvent.KEYCODE_DPAD_LEFT:
+            newX -= 20;
+            break;
+        case KeyEvent.KEYCODE_DPAD_RIGHT:
+            newX += 20;
+            break;
+        case KeyEvent.KEYCODE_DPAD_UP:
+            newY -= 20;
+            break;
+        case KeyEvent.KEYCODE_DPAD_DOWN:
+            newY += 20;
+            break;
+        default:
+            break;
         }
         if (Player.getInstance().attemptMove(newX, newY, 0)) {
             // move to next room
@@ -124,7 +122,7 @@ public class GameViewModel {
             roomObject.deleteRoom();
         }
     }
-    public boolean GameFinished() {
+    public boolean gameFinished() {
         return currentRoom >= 4;
     }
     public int getScore() {
