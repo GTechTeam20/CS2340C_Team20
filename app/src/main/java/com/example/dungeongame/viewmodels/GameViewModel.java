@@ -65,7 +65,13 @@ public class GameViewModel {
         if (Player.getInstance().attemptMove(newX, newY, 0)) {
             // move to next room
             setRoom(currentRoom + 1);
-            score += 100;
+            if (Player.getInstance().getDifficultyLevel().equals("Easy")) {
+                score += 50;
+            } else if (Player.getInstance().getDifficultyLevel().equals("Medium")) {
+                score += 100;
+            } else if (Player.getInstance().getDifficultyLevel().equals("Hard")) {
+                score += 150;
+            }
         }
     }
 
@@ -99,6 +105,9 @@ public class GameViewModel {
             enemies.add(crabEnemy);
             enemies.add(zombieEnemy);
         }
+        if (newRoom == 4) {
+            score += 200;
+        }
         for (DrawableSprite enemy: enemies) {
             drawables.add(enemy);
             CollisionManager.getInstance().addCollision(((Enemy) enemy).getCollisionBox());
@@ -119,6 +128,6 @@ public class GameViewModel {
         return currentRoom >= 4;
     }
     public int getScore() {
-        return score + Player.getInstance().getPlayerHealth()   ;
+        return score + Player.getInstance().getPlayerHealth();
     }
 }
