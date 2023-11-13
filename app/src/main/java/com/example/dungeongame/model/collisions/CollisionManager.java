@@ -34,11 +34,14 @@ public class CollisionManager {
             if (box == collider) {
                 continue;
             }
-            if (collider.x < box.x + box.width &&
-                    collider.x + collider.width > box.x &&
-                    collider.y < box.y + box.height &&
-                    collider.y + collider.height > box.y) {
-                return box.type;
+            if (collider.getX() < box.getX() + box.getWidth()
+                    &&
+                    collider.getX() + collider.getWidth() > box.getX()
+                    &&
+                    collider.getY() < box.getY() + box.getHeight()
+                    &&
+                    collider.getY() + collider.getHeight() > box.getY()) {
+                return box.getType();
             }
         }
         return CollisionType.NONE;
@@ -61,14 +64,17 @@ public class CollisionManager {
             if (box == collider) {
                 continue;
             }
-            if (newX < box.x + box.width &&
-                    newX + collider.width > box.x &&
-                    newY < box.y + box.height &&
-                    newY + collider.height > box.y) {
-                if (box.type == CollisionType.ENEMY) {
+            if (newX < box.getX() + box.getWidth()
+                    &&
+                    newX + collider.getWidth() > box.getX()
+                    &&
+                    newY < box.getY() + box.getHeight()
+                    &&
+                    newY + collider.getHeight() > box.getY()) {
+                if (box.getType() == CollisionType.ENEMY) {
                     enemyCollision = true;
                 } else {
-                    return box.type;
+                    return box.getType();
                 }
             }
         }

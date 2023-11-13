@@ -28,12 +28,12 @@ public class GameActivity extends AppCompatActivity {
     private int score = 1000; // Starting score
     private int currentRoom = 0;
 
-    public static Resources resources;
+    private static Resources resources;
 
-    public static int canvasDensity = 440;
-    ArrayList<DrawableSprite> drawables = new ArrayList<>();
+    private static int canvasDensity = 440;
+    private ArrayList<DrawableSprite> drawables = new ArrayList<>();
 
-    GameViewModel vm;
+    private GameViewModel vm;
     private TextView healthTextView;
 
     @Override
@@ -73,7 +73,7 @@ public class GameActivity extends AppCompatActivity {
                     }
                 }
                 mainView.invalidate();
-                if (vm.GameFinished()) {
+                if (vm.gameFinished()) {
                     Leaderboard.getLeaderboard().addEntry(playerName, vm.getScore(), new Date());
                     Intent endingIntent = new Intent(GameActivity.this, EndScreen.class);
                     endingIntent.putExtra("score", score);
@@ -133,5 +133,13 @@ public class GameActivity extends AppCompatActivity {
         }
         return true;
 
+    }
+
+    public static Resources getResourcesRef() {
+        return resources;
+    }
+
+    public static int getCanvasDensity() {
+        return canvasDensity;
     }
 }

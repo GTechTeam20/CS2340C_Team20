@@ -11,16 +11,16 @@ import com.example.dungeongame.model.collisions.CollisionBox;
 import com.example.dungeongame.model.collisions.CollisionType;
 import com.example.dungeongame.views.GameActivity;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class Goblin implements DrawableSprite, Enemy {
 
     private int enemyX;
     private int enemyY;
     private String imageName;
     private int speed = 6; // Adjust speed as needed
-    private int minX, maxX, minY, maxY;
+    private int minX;
+    private int maxX;
+    private int minY;
+    private int maxY;
     private int enemyWidth = 100;
 
     // CollisionBox associated with the Ghost
@@ -41,7 +41,8 @@ public class Goblin implements DrawableSprite, Enemy {
 
     private static Goblin instance = null;
 
-    public static Goblin getInstance(int x, int y, String imageName, int minX, int maxX, int minY, int maxY) {
+    public static Goblin getInstance(int x, int y, String imageName, int minX, int maxX, int minY,
+                                     int maxY) {
         if (instance == null) {
             instance = new Goblin(x, y, imageName, minX, maxX, minY, maxY);
         }
@@ -76,7 +77,8 @@ public class Goblin implements DrawableSprite, Enemy {
     @Override
     public void draw(Canvas canvas) {
         // Load enemy image from resources based on the imageName
-        Bitmap enemyBitmap = BitmapFactory.decodeResource(GameActivity.resources, R.drawable.goblin);
+        Bitmap enemyBitmap = BitmapFactory.decodeResource(GameActivity.getResourcesRef(),
+                R.drawable.goblin);
         adjustDensity(enemyBitmap, 100);
         canvas.drawBitmap(enemyBitmap, enemyX, enemyY, new Paint());
     }
