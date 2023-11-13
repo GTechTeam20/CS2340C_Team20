@@ -52,7 +52,7 @@ public class Goblin implements DrawableSprite, Enemy {
     @Override
     public void updatePosition() {
         // Move the ghost horizontally
-        enemyX += speed;
+        enemyX += 2 * speed;
 
         // Check boundaries for horizontal movement
         if (enemyX < minX || enemyX > maxX) {

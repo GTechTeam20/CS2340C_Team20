@@ -61,7 +61,7 @@ public class Zombie implements DrawableSprite, Enemy {
         }
 
         // Move the ghost vertically
-        enemyY += speed;
+        enemyY += 2 * speed;
 
         // Check boundaries for vertical movement
         if (enemyY < minY || enemyY > maxY) {
