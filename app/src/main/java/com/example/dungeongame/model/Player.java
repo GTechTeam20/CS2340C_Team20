@@ -22,7 +22,8 @@ import java.util.Date;
 // Layout for the singleton user class
 public class Player implements InputObserver, DrawableSprite {
 
-    final int playerWidth = 100;
+    final int playerWidth = 80;
+    final int playerHeight = 120;
     private int playerX;
     private int playerY;
     private int playerHealth;
@@ -33,7 +34,7 @@ public class Player implements InputObserver, DrawableSprite {
     private String difficultyLevel;
 
     private Player() {
-        collider = new CollisionBox(0, 0, playerWidth, playerWidth, CollisionType.PLAYER);
+        collider = new CollisionBox(0, 0, playerWidth, playerHeight, CollisionType.PLAYER);
         updatePosition(500, 500);
         playerHealth = 100;
         difficultyLevel = "";
