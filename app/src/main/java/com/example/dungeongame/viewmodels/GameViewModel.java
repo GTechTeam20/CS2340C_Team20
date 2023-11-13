@@ -94,7 +94,7 @@ public class GameViewModel {
             roomObject = new Room3();
             drawables.add(roomObject);
             // Enemies
-            Crab crabEnemy = Crab.getInstance(200, 300, "ghost", 100, 700, 100, 500);
+            Crab crabEnemy = Crab.getInstance(200, 300, "crab", 100, 700, 100, 500);
             Zombie zombieEnemy = Zombie.getInstance(600, 900, "zombie", 300, 900, 300, 700);
             enemies.add(crabEnemy);
             enemies.add(zombieEnemy);
