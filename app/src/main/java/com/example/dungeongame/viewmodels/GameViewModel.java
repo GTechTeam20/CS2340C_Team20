@@ -116,9 +116,9 @@ public class GameViewModel {
         }
     }
     public boolean GameFinished() {
-        return currentRoom == 4;
+        return currentRoom >= 4;
     }
     public int getScore() {
-        return score;
+        return score + Player.getInstance().getPlayerHealth()   ;
     }
 }
