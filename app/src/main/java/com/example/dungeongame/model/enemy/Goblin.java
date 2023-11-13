@@ -19,7 +19,7 @@ public class Goblin implements DrawableSprite, Enemy {
     private int enemyX;
     private int enemyY;
     private String imageName;
-    private int speed = 5; // Adjust speed as needed
+    private int speed = 6; // Adjust speed as needed
     private int minX, maxX, minY, maxY;
     private int enemyWidth = 100;
 
