@@ -78,4 +78,17 @@ public class Sprint4UnitTests {
     public void CheckGoblinLayer() {
         assertEquals(1, goblin.getLayer());
     }
+    @Test
+    public void testMoveUpandDown() {
+        assertEquals(true, player.attemptMove(2,2,1));
+        assertEquals(true, player.attemptMove(2,3,1));
+        assertEquals(true, player.attemptMove(2,1,1));
+
+    }
+    @Test
+    public void testMoveLeftandRight() {
+        assertEquals(true, player.attemptMove(2,2,1));
+        assertEquals(true, player.attemptMove(1,2,1));
+        assertEquals(true, player.attemptMove(3,2,1));
+    }
 }
