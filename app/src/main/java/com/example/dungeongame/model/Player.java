@@ -1,5 +1,6 @@
 package com.example.dungeongame.model;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -11,7 +12,12 @@ import com.example.dungeongame.model.behaviors.InputObserver;
 import com.example.dungeongame.model.collisions.CollisionBox;
 import com.example.dungeongame.model.collisions.CollisionManager;
 import com.example.dungeongame.model.collisions.CollisionType;
+import com.example.dungeongame.viewmodels.EndScreenViewModel;
+import com.example.dungeongame.views.EndScreen;
 import com.example.dungeongame.views.GameActivity;
+import com.example.dungeongame.views.NewActivity;
+
+import java.util.Date;
 
 // Layout for the singleton user class
 public class Player implements InputObserver, DrawableSprite {
@@ -24,10 +30,13 @@ public class Player implements InputObserver, DrawableSprite {
     private Bitmap sprite;
     private String sprite_string;
 
+    private String difficultyLevel;
+
     private Player() {
         collider = new CollisionBox(0, 0, playerWidth, playerWidth, CollisionType.PLAYER);
         updatePosition(500, 500);
         playerHealth = 100;
+        difficultyLevel = "";
     }
 
     private static Player instance = null;
@@ -39,7 +48,12 @@ public class Player implements InputObserver, DrawableSprite {
 
         return instance;
     }
-
+    public void setDifficultyLevel(String difficultyLevel) {
+        this.difficultyLevel = difficultyLevel;
+    }
+    public String getDifficultyLevel() {
+        return difficultyLevel;
+    }
     @Override
     public boolean attemptMove(int x, int y, int currentRoom) {
         int newX = playerX + x;
@@ -49,9 +63,18 @@ public class Player implements InputObserver, DrawableSprite {
         if (collisionType == CollisionType.NONE) {
             updatePosition(newX, newY);
         }
-        if (collisionType == CollisionType.ENEMY) {
+        else if (collisionType == CollisionType.ENEMY) {
             // Saarthak: change this based on the difficulty
-            reducePlayerHealth(10);
+            if (difficultyLevel.equals("Easy")) {
+                reducePlayerHealth(5);
+            }
+            else if (difficultyLevel.equals("Medium")) {
+                reducePlayerHealth(10);
+            }
+            else {
+                reducePlayerHealth(15);
+            }
+
             System.out.println("Enemy Collision Detected! Player Health: " + getPlayerHealth());
         } else if (collisionType == CollisionType.DOOR) {
             return true;
@@ -96,13 +119,12 @@ public class Player implements InputObserver, DrawableSprite {
     private void reducePlayerHealth(int amount) {
         playerHealth -= amount;
         if (playerHealth <= 0) {
-            handlePlayerDefeat();
+            playerHealth = 0;
+
         }
     }
 
-    private void handlePlayerDefeat() {
-        // Saarthak: implement this
-    }
+
 
     // New method to get the CollisionBox of the player
     public CollisionBox getCollisionBox() {

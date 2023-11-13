@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dungeongame.R;
+import com.example.dungeongame.model.Player;
 import com.example.dungeongame.viewmodels.ConfigurationViewModel;
 
 public class NewActivity extends AppCompatActivity {
@@ -78,6 +79,8 @@ public class NewActivity extends AppCompatActivity {
                     int selectedRadioButtonId = radioGroupDifficulty.getCheckedRadioButtonId();
                     RadioButton selectedRadioButton = findViewById(selectedRadioButtonId);
                     String selectedDifficulty = selectedRadioButton.getText().toString();
+
+                    Player.getInstance().setDifficultyLevel(selectedDifficulty);
                     Intent intent = new Intent(NewActivity.this, GameActivity.class);
                     intent.putExtra("selectedCharacter", selectedCharacter);
                     intent.putExtra("playerName", etPlayerName.getText().toString().trim());
