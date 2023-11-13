@@ -19,7 +19,7 @@ public class Crab implements DrawableSprite, Enemy {
     private int enemyX;
     private int enemyY;
     private String imageName;
-    private int speed = 5; // Adjust speed as needed
+    private int speed = 8; // Adjust speed as needed
     private int minX, maxX, minY, maxY;
     private int enemyWidth = 100;
 
@@ -61,7 +61,7 @@ public class Crab implements DrawableSprite, Enemy {
         }
 
         // Move the ghost vertically
-        enemyY += speed;
+        //enemyY += speed;
 
         // Check boundaries for vertical movement
         if (enemyY < minY || enemyY > maxY) {

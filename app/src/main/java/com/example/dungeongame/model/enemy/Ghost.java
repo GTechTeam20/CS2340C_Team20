@@ -21,7 +21,7 @@ public class Ghost implements DrawableSprite, Enemy {
     private int enemyX;
     private int enemyY;
     private String imageName;
-    private int speed = 5; // Adjust speed as needed
+    private int speed = 3; // Adjust speed as needed
     private int minX, maxX, minY, maxY;
     private int enemyWidth = 100;
 
@@ -54,7 +54,7 @@ public class Ghost implements DrawableSprite, Enemy {
     @Override
     public void updatePosition() {
         // Move the ghost horizontally
-        enemyX += speed;
+        //enemyX += speed;
 
         // Check boundaries for horizontal movement
         if (enemyX < minX || enemyX > maxX) {
