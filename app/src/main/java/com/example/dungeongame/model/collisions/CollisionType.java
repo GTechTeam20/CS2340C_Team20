@@ -4,7 +4,7 @@ public enum CollisionType {
     NONE,
     WALL,
     DOOR,
-    PROJECTILE,
+    SWORD,
     PLAYER,
     ENEMY,
 }

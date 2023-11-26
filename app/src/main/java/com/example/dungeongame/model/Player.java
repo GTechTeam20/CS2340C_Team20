@@ -25,8 +25,8 @@ public class Player implements InputObserver, DrawableSprite {
     private CollisionBox collider;
     private Bitmap sprite;
     private String spriteString;
-
     private String difficultyLevel;
+    private Sword sword;
 
     private Player() {
         collider = new CollisionBox(0, 0, playerWidth, playerHeight, CollisionType.PLAYER);
@@ -119,8 +119,12 @@ public class Player implements InputObserver, DrawableSprite {
 
         }
     }
-
-
+    public void setSword(Sword sword) {
+        this.sword = sword;
+    }
+    public void swingSword() {
+        sword.swing(playerX, playerY);
+    }
 
     // New method to get the CollisionBox of the player
     public CollisionBox getCollisionBox() {
