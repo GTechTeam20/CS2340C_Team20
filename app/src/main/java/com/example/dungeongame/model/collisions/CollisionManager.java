@@ -1,6 +1,7 @@
 package com.example.dungeongame.model.collisions;
 
 import com.example.dungeongame.model.Player;
+import com.example.dungeongame.model.Sword;
 import com.example.dungeongame.model.behaviors.DrawableSprite;
 import com.example.dungeongame.model.enemy.Enemy;
 
@@ -29,7 +30,7 @@ public class CollisionManager {
         collisions.remove(c);
     }
 
-    public CollisionType checkCollisions(CollisionBox collider) {
+    public CollisionType checkSwordCollisions(CollisionBox collider) {
         for (CollisionBox box : collisions) {
             if (box == collider) {
                 continue;
@@ -41,7 +42,6 @@ public class CollisionManager {
                     collider.getY() < box.getY() + box.getHeight()
                     &&
                     collider.getY() + collider.getHeight() > box.getY()) {
-                return box.getType();
             }
         }
         return CollisionType.NONE;
