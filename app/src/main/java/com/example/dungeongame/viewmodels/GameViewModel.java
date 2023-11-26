@@ -3,6 +3,7 @@ package com.example.dungeongame.viewmodels;
 import android.view.KeyEvent;
 
 import com.example.dungeongame.model.Player;
+import com.example.dungeongame.model.Sword;
 import com.example.dungeongame.model.behaviors.DrawableSprite;
 import com.example.dungeongame.model.collisions.CollisionManager;
 import com.example.dungeongame.model.enemy.Crab;
@@ -34,8 +35,9 @@ public class GameViewModel {
 
         // Player
         drawables.add(Player.getInstance());
-
-
+        Sword sword = new Sword(this);
+        Player.getInstance().setSword(sword);
+        this.drawables.add(sword);
 
         // DungeonRoom
         setRoom(1);
@@ -57,6 +59,9 @@ public class GameViewModel {
         case KeyEvent.KEYCODE_DPAD_DOWN:
             newY += 20;
             break;
+        case KeyEvent.KEYCODE_SPACE:
+            Player.getInstance().swingSword();
+            return;
         default:
             break;
         }
@@ -73,6 +78,10 @@ public class GameViewModel {
         }
     }
 
+    public void destroyEnemy(Enemy enemy) {
+
+    }
+
     private void setRoom(int newRoom) {
         currentRoom = newRoom;
         clearRoom();
@@ -82,8 +91,8 @@ public class GameViewModel {
             // Enemies
             Ghost ghostEnemy = Ghost.getInstance(200, 300, "ghost", 100, 700, 100, 500);
             Goblin goblinEnemy = Goblin.getInstance(400, 600, "goblin", 200, 800, 200, 600);
-            enemies.add(ghostEnemy);
-            enemies.add(goblinEnemy);
+            //enemies.add(ghostEnemy);
+            //enemies.add(goblinEnemy);
         }
         if (newRoom == 2) {
             roomObject = new Room2();
@@ -91,8 +100,8 @@ public class GameViewModel {
             // Enemies
             Ghost ghostEnemy = Ghost.getInstance(200, 300, "ghost", 100, 700, 100, 500);
             Zombie zombieEnemy = Zombie.getInstance(600, 900, "zombie", 300, 900, 300, 700);
-            enemies.add(ghostEnemy);
-            enemies.add(zombieEnemy);
+            //enemies.add(ghostEnemy);
+            //enemies.add(zombieEnemy);
         }
         if (newRoom == 3) {
             roomObject = new Room3();
