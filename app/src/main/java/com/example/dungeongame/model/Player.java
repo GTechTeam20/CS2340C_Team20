@@ -44,6 +44,11 @@ public class Player implements InputObserver, DrawableSprite {
 
         return instance;
     }
+
+    public static Player deleteInstance() {
+        instance = new Player();
+        return instance;
+    }
     public void setDifficultyLevel(String difficultyLevel) {
         this.difficultyLevel = difficultyLevel;
     }

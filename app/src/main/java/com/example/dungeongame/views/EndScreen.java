@@ -42,6 +42,7 @@ public class EndScreen extends AppCompatActivity {
         btnStartOver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Player.deleteInstance();
                 Intent intent = new Intent(EndScreen.this, MainActivity.class);
                 startActivity(intent);
             }
