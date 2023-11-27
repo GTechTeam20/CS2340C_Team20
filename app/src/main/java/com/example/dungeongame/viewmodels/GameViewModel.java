@@ -5,6 +5,7 @@ import android.view.KeyEvent;
 import com.example.dungeongame.model.Player;
 import com.example.dungeongame.model.Sword;
 import com.example.dungeongame.model.behaviors.DrawableSprite;
+import com.example.dungeongame.model.collisions.CollisionBox;
 import com.example.dungeongame.model.collisions.CollisionManager;
 import com.example.dungeongame.model.enemy.Crab;
 import com.example.dungeongame.model.enemy.Enemy;
@@ -78,8 +79,15 @@ public class GameViewModel {
         }
     }
 
-    public void destroyEnemy(Enemy enemy) {
-
+    public void destroyEnemy(CollisionBox enemyCollider) {
+        for (DrawableSprite enemy: enemies) {
+            if (((Enemy) enemy).getCollisionBox() == enemyCollider) {
+                drawables.remove(enemy);
+                CollisionManager.getInstance().removeCollision(((Enemy) enemy).getCollisionBox());
+                enemies.remove(enemy);
+            }
+        }
+        score += 20;
     }
 
     private void setRoom(int newRoom) {
@@ -91,8 +99,8 @@ public class GameViewModel {
             // Enemies
             Ghost ghostEnemy = Ghost.getInstance(200, 300, "ghost", 100, 700, 100, 500);
             Goblin goblinEnemy = Goblin.getInstance(400, 600, "goblin", 200, 800, 200, 600);
-            //enemies.add(ghostEnemy);
-            //enemies.add(goblinEnemy);
+            enemies.add(ghostEnemy);
+            enemies.add(goblinEnemy);
         }
         if (newRoom == 2) {
             roomObject = new Room2();
@@ -100,8 +108,8 @@ public class GameViewModel {
             // Enemies
             Ghost ghostEnemy = Ghost.getInstance(200, 300, "ghost", 100, 700, 100, 500);
             Zombie zombieEnemy = Zombie.getInstance(600, 900, "zombie", 300, 900, 300, 700);
-            //enemies.add(ghostEnemy);
-            //enemies.add(zombieEnemy);
+            enemies.add(ghostEnemy);
+            enemies.add(zombieEnemy);
         }
         if (newRoom == 3) {
             roomObject = new Room3();

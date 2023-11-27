@@ -30,7 +30,7 @@ public class CollisionManager {
         collisions.remove(c);
     }
 
-    public CollisionType checkSwordCollisions(CollisionBox collider) {
+    public CollisionBox checkSwordCollisions(CollisionBox collider) {
         for (CollisionBox box : collisions) {
             if (box == collider) {
                 continue;
@@ -42,9 +42,12 @@ public class CollisionManager {
                     collider.getY() < box.getY() + box.getHeight()
                     &&
                     collider.getY() + collider.getHeight() > box.getY()) {
+                if (box.getType() == CollisionType.ENEMY) {
+                    return box;
+                }
             }
         }
-        return CollisionType.NONE;
+        return null;
     }
 
     public CollisionType checkFutureCollisions(DrawableSprite sprite, int newX, int newY) {
