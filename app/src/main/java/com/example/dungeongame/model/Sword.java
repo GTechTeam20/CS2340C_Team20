@@ -59,7 +59,11 @@ public class Sword implements DrawableSprite {
 
         canvas.drawBitmap(sprite, swordX, swordY, new Paint());
         collider.updatePostion(swordX, swordY);
-        //CollisionManager.getInstance().checkSwordCollisions(collider);
+
+        CollisionBox enemy = CollisionManager.getInstance().checkSwordCollisions(collider);
+        if (enemy != null) {
+            vm.destroyEnemy(enemy);
+        }
     }
 
     public void swing(int playerX, int playerY) {
