@@ -21,3 +21,7 @@ https://drive.google.com/drive/folders/1XE7feLLkIgloDgMrPjnDtDUaoJQILNNw?usp=sha
 # Sprint 4 Diagrams
 
 https://drive.google.com/drive/folders/1_VouFD1YddvsXvG4_muPUlttUTy3IqjH?usp=drive_link
+
+# Sprint 5 Diagrams
+
+https://docs.google.com/document/d/1VcY9fFL3O9F1fQuYdZzCob4BBAUSSA55IBtx_jgtvMw/edit?usp=sharing
