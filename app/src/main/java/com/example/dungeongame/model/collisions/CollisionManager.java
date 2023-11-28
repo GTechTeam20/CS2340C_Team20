@@ -97,6 +97,9 @@ public class CollisionManager {
         if (enemyCollision) {
             return CollisionType.ENEMY;
         }
+        if (heartCollision) {
+            return CollisionType.HEART;
+        }
         return CollisionType.NONE;
     }
 
