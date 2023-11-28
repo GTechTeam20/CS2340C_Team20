@@ -145,6 +145,10 @@ public class GameViewModel {
                 drawables.remove(enemy);
                 CollisionManager.getInstance().removeCollision(((Enemy) enemy).getCollisionBox());
             }
+            for (DrawableSprite powerup: powerups) {
+                drawables.remove(powerup);
+                CollisionManager.getInstance().removeCollision(((Powerup) powerup).getCollisionBox());
+            }
             enemies.clear();
             roomObject.deleteRoom();
         }
