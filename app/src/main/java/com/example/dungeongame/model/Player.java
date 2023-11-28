@@ -11,6 +11,7 @@ import com.example.dungeongame.model.behaviors.InputObserver;
 import com.example.dungeongame.model.collisions.CollisionBox;
 import com.example.dungeongame.model.collisions.CollisionManager;
 import com.example.dungeongame.model.collisions.CollisionType;
+import com.example.dungeongame.model.powerups.Heart;
 import com.example.dungeongame.views.GameActivity;
 
 
@@ -72,8 +73,6 @@ public class Player implements InputObserver, DrawableSprite {
             } else {
                 reducePlayerHealth(15);
             }
-
-            System.out.println("Enemy Collision Detected! Player Health: " + getPlayerHealth());
         } else if (collisionType == collisionType.HEART) {
             reducePlayerHealth(-20); //This will add health
         } else if (collisionType == CollisionType.DOOR) {
