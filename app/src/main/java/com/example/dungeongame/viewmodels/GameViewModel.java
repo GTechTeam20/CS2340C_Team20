@@ -29,6 +29,7 @@ public class GameViewModel {
 
     // Represent currently active enemies
     private List<DrawableSprite> enemies;
+    private List<DrawableSprite> powerups;
 
     public GameViewModel(ArrayList<DrawableSprite> drawables) {
         this.drawables = drawables;
@@ -99,7 +100,7 @@ public class GameViewModel {
             roomObject = new Room1();
             drawables.add(roomObject);
             Heart heart = Heart.getInstance(333, 332, "heart");
-            drawables.add(heart);
+            powerups.add(heart);
             // Enemies
             Ghost ghostEnemy = Ghost.getInstance(200, 300, "ghost", 100, 700, 100, 500);
             Goblin goblinEnemy = Goblin.getInstance(400, 600, "goblin", 200, 800, 200, 600);
