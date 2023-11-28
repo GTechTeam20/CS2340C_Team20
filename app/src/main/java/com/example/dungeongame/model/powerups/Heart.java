@@ -3,7 +3,6 @@ package com.example.dungeongame.model.powerups;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.example.dungeongame.R;
@@ -49,11 +48,6 @@ public class Heart implements DrawableSprite {
                 R.drawable.heart);
         adjustDensity(enemyBitmap, 100);
         canvas.drawBitmap(enemyBitmap, X, Y, new Paint());
-    }
-    public void undraw(Canvas canvas) {
-        Paint paint = new Paint();
-        paint.setColor(Color.TRANSPARENT);
-        canvas.drawRect(X, Y, X + width, Y + width, paint);
     }
 
     @Override
