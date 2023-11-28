@@ -13,6 +13,7 @@ import com.example.dungeongame.model.enemy.Ghost;
 import com.example.dungeongame.model.enemy.Goblin;
 import com.example.dungeongame.model.enemy.Zombie;
 import com.example.dungeongame.model.powerups.Heart;
+import com.example.dungeongame.model.powerups.Powerup;
 import com.example.dungeongame.model.rooms.DungeonRoom;
 import com.example.dungeongame.model.rooms.Room1;
 import com.example.dungeongame.model.rooms.Room2;
@@ -131,6 +132,10 @@ public class GameViewModel {
         for (DrawableSprite enemy: enemies) {
             drawables.add(enemy);
             CollisionManager.getInstance().addCollision(((Enemy) enemy).getCollisionBox());
+        }
+        for (DrawableSprite powerup: powerups) {
+            drawables.add(powerup);
+            CollisionManager.getInstance().addCollision(((Powerup) powerup).getCollisionBox());
         }
     }
     public void clearRoom() {
