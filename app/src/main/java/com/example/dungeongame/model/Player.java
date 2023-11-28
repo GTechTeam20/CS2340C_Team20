@@ -76,8 +76,7 @@ public class Player implements InputObserver, DrawableSprite {
             System.out.println("Enemy Collision Detected! Player Health: " + getPlayerHealth());
         } else if (collisionType == collisionType.HEART) {
             reducePlayerHealth(-20); //This will add health
-        }
-        else if (collisionType == CollisionType.DOOR) {
+        } else if (collisionType == CollisionType.DOOR) {
             return true;
         }
         return false;
