@@ -13,7 +13,7 @@ import com.example.dungeongame.model.collisions.CollisionType;
 import com.example.dungeongame.model.enemy.Crab;
 import com.example.dungeongame.views.GameActivity;
 
-public class Heart implements DrawableSprite {
+public class Heart implements DrawableSprite, Powerup {
     private int X;
     private int Y;
     private String imageName;
