@@ -7,4 +7,5 @@ public enum CollisionType {
     SWORD,
     PLAYER,
     ENEMY,
+    HEART,
 }

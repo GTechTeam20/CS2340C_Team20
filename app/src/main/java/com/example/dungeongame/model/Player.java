@@ -74,6 +74,8 @@ public class Player implements InputObserver, DrawableSprite {
             }
 
             System.out.println("Enemy Collision Detected! Player Health: " + getPlayerHealth());
+        } else if (collisionType == collisionType.HEART) {
+            reducePlayerHealth(-20); //This will add health
         } else if (collisionType == CollisionType.DOOR) {
             return true;
         }
@@ -129,6 +131,9 @@ public class Player implements InputObserver, DrawableSprite {
     }
     public void swingSword() {
         sword.swing(playerX, playerY);
+    }
+    public void addHealth(int amount) {
+        playerHealth += amount;
     }
 
     // New method to get the CollisionBox of the player

@@ -4,6 +4,7 @@ import com.example.dungeongame.model.Player;
 import com.example.dungeongame.model.Sword;
 import com.example.dungeongame.model.behaviors.DrawableSprite;
 import com.example.dungeongame.model.enemy.Enemy;
+import com.example.dungeongame.model.powerups.Heart;
 
 import java.util.ArrayList;
 
@@ -57,6 +58,8 @@ public class CollisionManager {
             collider = ((Enemy) sprite).getCollisionBox();
         } else if (sprite instanceof Player) {
             collider = ((Player) sprite).getCollisionBox();
+        } else if (sprite instanceof Heart) {
+            collider = ((Heart) sprite).getCollisionBox();
         }
 
         if (collider == null) {
