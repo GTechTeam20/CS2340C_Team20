@@ -54,6 +54,7 @@ public class CollisionManager {
     public CollisionType checkFutureCollisions(DrawableSprite sprite, int newX, int newY) {
         CollisionBox collider = null;
         boolean enemyCollision = false;
+        boolean heartCollision = false;
         if (sprite instanceof Enemy) {
             collider = ((Enemy) sprite).getCollisionBox();
         } else if (sprite instanceof Player) {
@@ -79,6 +80,8 @@ public class CollisionManager {
                     newY + collider.getHeight() > box.getY()) {
                 if (box.getType() == CollisionType.ENEMY) {
                     enemyCollision = true;
+                } else if (box.getType() == CollisionType.HEART)  {
+                    heartCollision = true;
                 } else {
                     return box.getType();
                 }
