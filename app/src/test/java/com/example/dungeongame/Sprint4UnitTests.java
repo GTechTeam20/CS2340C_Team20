@@ -79,16 +79,18 @@ public class Sprint4UnitTests {
         assertEquals(1, goblin.getLayer());
     }
     @Test
-    public void testMoveUpandDown() {
-        assertEquals(true, player.attemptMove(2,2,1));
-        assertEquals(true, player.attemptMove(2,3,1));
-        assertEquals(true, player.attemptMove(2,1,1));
-
+    public void testCrabEnemyCollision() {
+        int health = player.getPlayerHealth();
+        CollisionManager.getInstance().addCollision(((Enemy) crab).getCollisionBox());
+        assertEquals(false, player.attemptMove(200, 300, 1));
+        assertEquals(false, player.getPlayerHealth() < health);
     }
+
     @Test
-    public void testMoveLeftandRight() {
-        assertEquals(true, player.attemptMove(2,2,1));
-        assertEquals(true, player.attemptMove(1,2,1));
-        assertEquals(true, player.attemptMove(3,2,1));
+    public void testGoblinEnemyCollision() {
+        int health = player.getPlayerHealth();
+        CollisionManager.getInstance().addCollision(((Enemy) goblin).getCollisionBox());
+        assertEquals(false, player.attemptMove(200, 300, 1));
+        assertEquals(false, player.getPlayerHealth() < health);
     }
 }
