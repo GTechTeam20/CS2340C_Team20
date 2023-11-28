@@ -17,3 +17,11 @@ https://drive.google.com/file/d/1bqjQ22Pr38intkPnnQrISt8_-ent7WpM/view?usp=shari
 # Sprint 3 Diagrams
 
 https://drive.google.com/drive/folders/1XE7feLLkIgloDgMrPjnDtDUaoJQILNNw?usp=sharing
+
+# Sprint 4 Diagrams
+
+https://drive.google.com/drive/folders/1_VouFD1YddvsXvG4_muPUlttUTy3IqjH?usp=drive_link
+
+# Sprint 5 Diagrams
+
+https://docs.google.com/document/d/1VcY9fFL3O9F1fQuYdZzCob4BBAUSSA55IBtx_jgtvMw/edit?usp=sharing

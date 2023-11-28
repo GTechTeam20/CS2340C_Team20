@@ -3,7 +3,9 @@ package com.example.dungeongame.viewmodels;
 import android.view.KeyEvent;
 
 import com.example.dungeongame.model.Player;
+import com.example.dungeongame.model.Sword;
 import com.example.dungeongame.model.behaviors.DrawableSprite;
+import com.example.dungeongame.model.collisions.CollisionBox;
 import com.example.dungeongame.model.collisions.CollisionManager;
 import com.example.dungeongame.model.enemy.Crab;
 import com.example.dungeongame.model.enemy.Enemy;
@@ -34,8 +36,9 @@ public class GameViewModel {
 
         // Player
         drawables.add(Player.getInstance());
-
-
+        Sword sword = new Sword(this);
+        Player.getInstance().setSword(sword);
+        this.drawables.add(sword);
 
         // DungeonRoom
         setRoom(1);
@@ -57,6 +60,9 @@ public class GameViewModel {
         case KeyEvent.KEYCODE_DPAD_DOWN:
             newY += 20;
             break;
+        case KeyEvent.KEYCODE_SPACE:
+            Player.getInstance().swingSword();
+            return;
         default:
             break;
         }
@@ -71,6 +77,17 @@ public class GameViewModel {
                 score += 150;
             }
         }
+    }
+
+    public void destroyEnemy(CollisionBox enemyCollider) {
+        for (DrawableSprite enemy: enemies) {
+            if (((Enemy) enemy).getCollisionBox() == enemyCollider) {
+                drawables.remove(enemy);
+                CollisionManager.getInstance().removeCollision(((Enemy) enemy).getCollisionBox());
+                enemies.remove(enemy);
+            }
+        }
+        score += 30;
     }
 
     private void setRoom(int newRoom) {

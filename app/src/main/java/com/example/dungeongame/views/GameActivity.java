@@ -25,7 +25,6 @@ import java.util.Date;
 
 public class GameActivity extends AppCompatActivity {
     private static final long DELAY_MILLIS = 100; // One second delay
-    private int score = 1000; // Starting score
     private int currentRoom = 0;
 
     private static Resources resources;
@@ -73,10 +72,10 @@ public class GameActivity extends AppCompatActivity {
                     }
                 }
                 mainView.invalidate();
-                if (vm.gameFinished()) {
+                if (vm.gameFinished() || Player.getInstance().getPlayerHealth() <= 0) {
                     Leaderboard.getLeaderboard().addEntry(playerName, vm.getScore(), new Date());
                     Intent endingIntent = new Intent(GameActivity.this, EndScreen.class);
-                    endingIntent.putExtra("score", score);
+                    endingIntent.putExtra("score", vm.getScore());
                     startActivity(endingIntent);
                     finish();
                 } else {
@@ -124,13 +123,6 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         vm.getInput(keyCode, event);
-        int playerHealth = Player.getInstance().getPlayerHealth();
-        if (playerHealth <= 0) {
-            Intent endingIntent = new Intent(GameActivity.this, EndScreen.class);
-            endingIntent.putExtra("score", score);
-            startActivity(endingIntent);
-            finish();
-        }
         return true;
 
     }

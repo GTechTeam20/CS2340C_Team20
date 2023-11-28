@@ -9,7 +9,5 @@ public interface Enemy {
     void updatePosition();
 
     void draw(Canvas canvas);
-
-    int getLayer();
     CollisionBox getCollisionBox();
 }
