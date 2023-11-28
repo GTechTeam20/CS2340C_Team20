@@ -35,6 +35,7 @@ public class GameViewModel {
     public GameViewModel(ArrayList<DrawableSprite> drawables) {
         this.drawables = drawables;
         this.enemies = new ArrayList<>();
+        this.powerups = new ArrayList<>();
         score = 0;
 
         // Player
