@@ -88,7 +88,7 @@ public class GameViewModel {
                 enemies.remove(enemy);
             }
         }
-        score += 20;
+        score += 30;
     }
 
     private void setRoom(int newRoom) {
