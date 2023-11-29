@@ -55,6 +55,7 @@ public class CollisionManager {
         CollisionBox collider = null;
         boolean enemyCollision = false;
         boolean heartCollision = false;
+        boolean speedCollision = false;
         if (sprite instanceof Enemy) {
             collider = ((Enemy) sprite).getCollisionBox();
         } else if (sprite instanceof Player) {
@@ -82,6 +83,8 @@ public class CollisionManager {
                     enemyCollision = true;
                 } else if (box.getType() == CollisionType.HEART)  {
                     heartCollision = true;
+                } else if (box.getType() == CollisionType.SPEED) {
+                    speedCollision = true;
                 } else {
                     return box.getType();
                 }
@@ -99,6 +102,9 @@ public class CollisionManager {
         }
         if (heartCollision) {
             return CollisionType.HEART;
+        }
+        if (speedCollision) {
+            return CollisionType.SPEED;
         }
         return CollisionType.NONE;
     }
