@@ -9,4 +9,5 @@ public enum CollisionType {
     ENEMY,
     HEART,
     SPEED,
+    COIN,
 }

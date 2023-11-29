@@ -4,7 +4,9 @@ import com.example.dungeongame.model.Player;
 import com.example.dungeongame.model.Sword;
 import com.example.dungeongame.model.behaviors.DrawableSprite;
 import com.example.dungeongame.model.enemy.Enemy;
+import com.example.dungeongame.model.powerups.Coin;
 import com.example.dungeongame.model.powerups.Heart;
+import com.example.dungeongame.model.powerups.Speed;
 
 import java.util.ArrayList;
 
@@ -56,12 +58,18 @@ public class CollisionManager {
         boolean enemyCollision = false;
         boolean heartCollision = false;
         boolean speedCollision = false;
+        boolean coinCollision = false;
+
         if (sprite instanceof Enemy) {
             collider = ((Enemy) sprite).getCollisionBox();
         } else if (sprite instanceof Player) {
             collider = ((Player) sprite).getCollisionBox();
         } else if (sprite instanceof Heart) {
             collider = ((Heart) sprite).getCollisionBox();
+        } else if (sprite instanceof Coin) {
+            collider = ((Coin) sprite).getCollisionBox();
+        } else if (sprite instanceof Speed) {
+            collider = ((Speed) sprite).getCollisionBox();
         }
 
         if (collider == null) {
@@ -85,6 +93,8 @@ public class CollisionManager {
                     heartCollision = true;
                 } else if (box.getType() == CollisionType.SPEED) {
                     speedCollision = true;
+                } else if (box.getType() == CollisionType.COIN) {
+                    coinCollision = true;
                 } else {
                     return box.getType();
                 }
@@ -105,6 +115,9 @@ public class CollisionManager {
         }
         if (speedCollision) {
             return CollisionType.SPEED;
+        }
+        if (coinCollision) {
+            return CollisionType.COIN;
         }
         return CollisionType.NONE;
     }

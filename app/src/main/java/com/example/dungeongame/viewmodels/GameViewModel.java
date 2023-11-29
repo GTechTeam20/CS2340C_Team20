@@ -12,6 +12,7 @@ import com.example.dungeongame.model.enemy.Enemy;
 import com.example.dungeongame.model.enemy.Ghost;
 import com.example.dungeongame.model.enemy.Goblin;
 import com.example.dungeongame.model.enemy.Zombie;
+import com.example.dungeongame.model.powerups.Coin;
 import com.example.dungeongame.model.powerups.Heart;
 import com.example.dungeongame.model.powerups.Powerup;
 import com.example.dungeongame.model.rooms.DungeonRoom;
@@ -121,6 +122,8 @@ public class GameViewModel {
         if (newRoom == 3) {
             roomObject = new Room3();
             drawables.add(roomObject);
+            Coin coin = Coin.getInstance(333, 332, "heart");
+            powerups.add(coin);
             // Enemies
             Crab crabEnemy = Crab.getInstance(200, 300, "crab", 100, 700, 100, 500);
             Zombie zombieEnemy = Zombie.getInstance(600, 900, "zombie", 300, 900, 300, 700);
