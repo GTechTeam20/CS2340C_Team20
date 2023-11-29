@@ -117,7 +117,6 @@ public class GameViewModel {
 
             Speed speed = Speed.getInstance(333, 800, "speed");
             powerups.add(speed);
-            // Enemies
             Ghost ghostEnemy = Ghost.getInstance(200, 300, "ghost", 100, 700, 100, 500);
             Zombie zombieEnemy = Zombie.getInstance(600, 900, "zombie", 300, 900, 300, 700);
             enemies.add(ghostEnemy);
