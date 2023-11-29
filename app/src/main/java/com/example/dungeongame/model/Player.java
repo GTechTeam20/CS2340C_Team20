@@ -24,6 +24,7 @@ public class Player implements InputObserver, DrawableSprite {
     private int playerY;
     private int playerHealth;
     private int playerScore = 0;
+    private int speedBoost = 1;
     private CollisionBox collider;
     private Bitmap sprite;
     private String spriteString;
@@ -59,14 +60,13 @@ public class Player implements InputObserver, DrawableSprite {
     }
     @Override
     public boolean attemptMove(int x, int y, int currentRoom) {
-        int newX = playerX + x;
-        int newY = playerY + y;
+        int newX = playerX + (x * speedBoost);
+        int newY = playerY + (y * speedBoost);
         CollisionType collisionType = CollisionManager.getInstance()
                 .checkFutureCollisions(this, newX, newY);
         if (collisionType == CollisionType.NONE) {
             updatePosition(newX, newY);
         } else if (collisionType == CollisionType.ENEMY) {
-            // Saarthak: change this based on the difficulty
             if (difficultyLevel.equals("Easy")) {
                 reducePlayerHealth(5);
             } else if (difficultyLevel.equals("Medium")) {
@@ -80,6 +80,8 @@ public class Player implements InputObserver, DrawableSprite {
             playerScore += 20;
         } else if (collisionType == CollisionType.DOOR) {
             return true;
+        } else if (collisionType == CollisionType.SPEED) {
+            speedBoost += 0.25;
         }
         return false;
     }
