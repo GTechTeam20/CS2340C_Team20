@@ -116,7 +116,6 @@ public class GameActivity extends AppCompatActivity {
         //    endingIntent.putExtra("score", score);
         //    startActivity(endingIntent);
         //    finish();
-        //}
     }
 
 
