@@ -10,7 +10,6 @@ import com.example.dungeongame.model.behaviors.DrawableSprite;
 import com.example.dungeongame.model.collisions.CollisionBox;
 import com.example.dungeongame.model.collisions.CollisionManager;
 import com.example.dungeongame.model.collisions.CollisionType;
-import com.example.dungeongame.model.enemy.Goblin;
 import com.example.dungeongame.viewmodels.GameViewModel;
 import com.example.dungeongame.views.GameActivity;
 
