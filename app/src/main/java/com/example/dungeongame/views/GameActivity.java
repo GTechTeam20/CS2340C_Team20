@@ -111,11 +111,6 @@ public class GameActivity extends AppCompatActivity {
 
         // Update the health TextView
         healthTextView.setText("Health: " + playerHealth);
-        //if (playerHealth <= 0) {
-        //    Intent endingIntent = new Intent(GameActivity.this, EndScreen.class);
-        //    endingIntent.putExtra("score", score);
-        //    startActivity(endingIntent);
-        //    finish();
     }
 
 
