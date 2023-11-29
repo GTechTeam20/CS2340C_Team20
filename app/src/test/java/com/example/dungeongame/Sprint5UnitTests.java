@@ -4,7 +4,11 @@ import static org.junit.Assert.assertEquals;
 
 import com.example.dungeongame.model.Player;
 import com.example.dungeongame.model.collisions.CollisionManager;
+import com.example.dungeongame.model.enemy.Crab;
+import com.example.dungeongame.model.enemy.Ghost;
+import com.example.dungeongame.model.powerups.Coin;
 import com.example.dungeongame.model.powerups.Heart;
+import com.example.dungeongame.model.powerups.Speed;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +16,19 @@ import org.junit.Test;
 public class Sprint5UnitTests {
     private Player player;
     Heart heart = Heart.getInstance(200, 300, "heart");
+    Coin coin = Coin.getInstance(200, 300, "coin");
+    Speed speed = Speed.getInstance(200, 300, "speed");
 
+
+    @Test
+    public void CheckCrabLayer() {
+        assertEquals(1, coin.getLayer());
+    }
+
+    @Test
+    public void CheckGhostLayer() {
+        assertEquals(1, speed.getLayer());
+    }
 
 
     @Before
