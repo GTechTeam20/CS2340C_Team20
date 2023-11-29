@@ -23,6 +23,7 @@ public class Player implements InputObserver, DrawableSprite {
     private int playerX;
     private int playerY;
     private int playerHealth;
+    private int playerScore = 0;
     private CollisionBox collider;
     private Bitmap sprite;
     private String spriteString;
@@ -75,6 +76,8 @@ public class Player implements InputObserver, DrawableSprite {
             }
         } else if (collisionType == collisionType.HEART) {
             reducePlayerHealth(-20); //This will add health
+        } else if (collisionType == collisionType.COIN) {
+            playerScore += 20;
         } else if (collisionType == CollisionType.DOOR) {
             return true;
         }
@@ -117,6 +120,7 @@ public class Player implements InputObserver, DrawableSprite {
     public int getPlayerHealth() {
         return playerHealth;
     }
+    public int getPlayerScore() { return playerScore; }
 
     private void reducePlayerHealth(int amount) {
         playerHealth -= amount;
