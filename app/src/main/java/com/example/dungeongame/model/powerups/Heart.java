@@ -3,19 +3,17 @@ package com.example.dungeongame.model.powerups;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.example.dungeongame.R;
 import com.example.dungeongame.model.behaviors.DrawableSprite;
 import com.example.dungeongame.model.collisions.CollisionBox;
 import com.example.dungeongame.model.collisions.CollisionType;
-import com.example.dungeongame.model.enemy.Crab;
 import com.example.dungeongame.views.GameActivity;
 
 public class Heart implements DrawableSprite, Powerup {
-    private int X;
-    private int Y;
+    private int x;
+    private int y;
     private String imageName;
     private int width = 100;
 
@@ -24,8 +22,8 @@ public class Heart implements DrawableSprite, Powerup {
 
     private Heart(int x, int y, String imageName) {
         this.imageName = imageName;
-        this.X = x;
-        this.Y = y;
+        this.x = x;
+        this.y = y;
 
         // Initialize the CollisionBox
         collider = new CollisionBox(x, y, width, width, CollisionType.HEART);
@@ -48,7 +46,7 @@ public class Heart implements DrawableSprite, Powerup {
         Bitmap enemyBitmap = BitmapFactory.decodeResource(GameActivity.getResourcesRef(),
                 R.drawable.heart);
         adjustDensity(enemyBitmap, 100);
-        canvas.drawBitmap(enemyBitmap, X, Y, new Paint());
+        canvas.drawBitmap(enemyBitmap, x, y, new Paint());
     }
 
     @Override

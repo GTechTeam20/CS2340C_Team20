@@ -1,7 +1,6 @@
 package com.example.dungeongame.model.collisions;
 
 import com.example.dungeongame.model.Player;
-import com.example.dungeongame.model.Sword;
 import com.example.dungeongame.model.behaviors.DrawableSprite;
 import com.example.dungeongame.model.enemy.Enemy;
 import com.example.dungeongame.model.powerups.Coin;

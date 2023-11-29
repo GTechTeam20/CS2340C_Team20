@@ -11,7 +11,6 @@ import com.example.dungeongame.model.behaviors.InputObserver;
 import com.example.dungeongame.model.collisions.CollisionBox;
 import com.example.dungeongame.model.collisions.CollisionManager;
 import com.example.dungeongame.model.collisions.CollisionType;
-import com.example.dungeongame.model.powerups.Heart;
 import com.example.dungeongame.views.GameActivity;
 
 
@@ -122,7 +121,9 @@ public class Player implements InputObserver, DrawableSprite {
     public int getPlayerHealth() {
         return playerHealth;
     }
-    public int getPlayerScore() { return playerScore; }
+    public int getPlayerScore() {
+        return playerScore;
+    }
 
     private void reducePlayerHealth(int amount) {
         playerHealth -= amount;
