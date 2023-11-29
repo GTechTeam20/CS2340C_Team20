@@ -28,7 +28,7 @@ public class Coin implements DrawableSprite, Powerup {
         this.Y = y;
 
         // Initialize the CollisionBox
-        collider = new CollisionBox(x, y, width, width, CollisionType.HEART);
+        collider = new CollisionBox(x, y, width, width, CollisionType.COIN);
     }
 
     private static Coin instance = null;
@@ -46,7 +46,7 @@ public class Coin implements DrawableSprite, Powerup {
     public void draw(Canvas canvas) {
         // Load enemy image from resources based on the imageName
         Bitmap enemyBitmap = BitmapFactory.decodeResource(GameActivity.getResourcesRef(),
-                R.drawable.heart);
+                R.drawable.coin);
         adjustDensity(enemyBitmap, 100);
         canvas.drawBitmap(enemyBitmap, X, Y, new Paint());
     }

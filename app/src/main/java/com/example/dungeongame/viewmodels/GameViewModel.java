@@ -15,6 +15,7 @@ import com.example.dungeongame.model.enemy.Zombie;
 import com.example.dungeongame.model.powerups.Coin;
 import com.example.dungeongame.model.powerups.Heart;
 import com.example.dungeongame.model.powerups.Powerup;
+import com.example.dungeongame.model.powerups.Speed;
 import com.example.dungeongame.model.rooms.DungeonRoom;
 import com.example.dungeongame.model.rooms.Room1;
 import com.example.dungeongame.model.rooms.Room2;
@@ -113,6 +114,9 @@ public class GameViewModel {
         if (newRoom == 2) {
             roomObject = new Room2();
             drawables.add(roomObject);
+
+            Speed speed = Speed.getInstance(333, 800, "speed");
+            powerups.add(speed);
             // Enemies
             Ghost ghostEnemy = Ghost.getInstance(200, 300, "ghost", 100, 700, 100, 500);
             Zombie zombieEnemy = Zombie.getInstance(600, 900, "zombie", 300, 900, 300, 700);
@@ -122,7 +126,7 @@ public class GameViewModel {
         if (newRoom == 3) {
             roomObject = new Room3();
             drawables.add(roomObject);
-            Coin coin = Coin.getInstance(333, 332, "heart");
+            Coin coin = Coin.getInstance(333, 500, "coin");
             powerups.add(coin);
             // Enemies
             Crab crabEnemy = Crab.getInstance(200, 300, "crab", 100, 700, 100, 500);
@@ -154,6 +158,7 @@ public class GameViewModel {
                 CollisionManager.getInstance().removeCollision(((Powerup) powerup).getCollisionBox());
             }
             enemies.clear();
+            powerups.clear();
             roomObject.deleteRoom();
         }
     }
