@@ -26,7 +26,7 @@ public class Speed implements DrawableSprite, Powerup {
         this.Y = y;
 
         // Initialize the CollisionBox
-        collider = new CollisionBox(x, y, width, width, CollisionType.HEART);
+        collider = new CollisionBox(x, y, width, width, CollisionType.SPEED);
     }
 
     private static Speed instance = null;
