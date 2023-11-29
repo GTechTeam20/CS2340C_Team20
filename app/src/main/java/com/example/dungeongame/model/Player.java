@@ -75,7 +75,7 @@ public class Player implements InputObserver, DrawableSprite {
                 reducePlayerHealth(15);
             }
         } else if (collisionType == collisionType.HEART) {
-            reducePlayerHealth(-20); //This will add health
+            reducePlayerHealth(-20);
         } else if (collisionType == collisionType.COIN) {
             playerScore += 20;
         } else if (collisionType == CollisionType.DOOR) {
