@@ -13,16 +13,14 @@ import com.example.dungeongame.model.collisions.CollisionType;
 import com.example.dungeongame.model.enemy.Crab;
 import com.example.dungeongame.views.GameActivity;
 
-public class Heart implements DrawableSprite, Powerup {
+public class Speed implements DrawableSprite, Powerup {
     private int X;
     private int Y;
     private String imageName;
     private int width = 100;
-
-    // CollisionBox associated with the Ghost
     private CollisionBox collider;
 
-    private Heart(int x, int y, String imageName) {
+    private Speed(int x, int y, String imageName) {
         this.imageName = imageName;
         this.X = x;
         this.Y = y;
@@ -31,11 +29,11 @@ public class Heart implements DrawableSprite, Powerup {
         collider = new CollisionBox(x, y, width, width, CollisionType.HEART);
     }
 
-    private static Heart instance = null;
+    private static Speed instance = null;
 
-    public static Heart getInstance(int x, int y, String imageName) {
+    public static Speed getInstance(int x, int y, String imageName) {
         if (instance == null) {
-            instance = new Heart(x, y, imageName);
+            instance = new Speed(x, y, imageName);
         }
 
         return instance;
@@ -46,7 +44,7 @@ public class Heart implements DrawableSprite, Powerup {
     public void draw(Canvas canvas) {
         // Load enemy image from resources based on the imageName
         Bitmap enemyBitmap = BitmapFactory.decodeResource(GameActivity.getResourcesRef(),
-                R.drawable.heart);
+                R.drawable.speedboost);
         adjustDensity(enemyBitmap, 100);
         canvas.drawBitmap(enemyBitmap, X, Y, new Paint());
     }
