@@ -82,7 +82,7 @@ public class Sprint5UnitTests {
 
     @Test
     public void testPlayerAddHealth() {
-        player.addHealth(10);
-        assertEquals(player.getPlayerHealth(), 110);
+        player.addHealth(20);
+        assertEquals(player.getPlayerHealth(), 120);
     }
 }
