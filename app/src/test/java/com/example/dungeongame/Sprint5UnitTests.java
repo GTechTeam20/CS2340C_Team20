@@ -68,6 +68,11 @@ public class Sprint5UnitTests {
     public void testScore() {
         int score = player.getPlayerScore();
         CollisionManager.getInstance().addCollision(((Coin) coin).getCollisionBox());
+
+    @Test
+    public void testScoreHeart() {
+        int score = player.getPlayerScore();
+        CollisionManager.getInstance().addCollision(((Heart) heart).getCollisionBox());
         assertEquals(false, player.getPlayerScore() > score);
     }
 }
