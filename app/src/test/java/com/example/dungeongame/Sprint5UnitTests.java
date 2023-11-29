@@ -20,8 +20,6 @@ public class Sprint5UnitTests {
     Coin coin = Coin.getInstance(200, 300, "coin");
     Speed speed = Speed.getInstance(200, 300, "speed");
 
-    Sword sword =
-
 
     @Test
     public void CheckCrabLayer() {
@@ -68,11 +66,23 @@ public class Sprint5UnitTests {
     public void testScore() {
         int score = player.getPlayerScore();
         CollisionManager.getInstance().addCollision(((Coin) coin).getCollisionBox());
+    }
 
     @Test
     public void testScoreHeart() {
         int score = player.getPlayerScore();
         CollisionManager.getInstance().addCollision(((Heart) heart).getCollisionBox());
         assertEquals(false, player.getPlayerScore() > score);
+    }
+
+    @Test
+    public void testPlayerHealth() {
+        assertEquals(player.getPlayerHealth(), 100);
+    }
+
+    @Test
+    public void testPlayerAddHealth() {
+        player.addHealth(10);
+        assertEquals(player.getPlayerHealth(), 110);
     }
 }
