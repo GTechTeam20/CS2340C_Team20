@@ -8,4 +8,5 @@ public enum CollisionType {
     PLAYER,
     ENEMY,
     HEART,
+    SPEED,
 }
