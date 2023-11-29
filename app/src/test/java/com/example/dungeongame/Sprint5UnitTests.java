@@ -63,6 +63,11 @@ public class Sprint5UnitTests {
     public void testHeartLayer() {
         assertEquals(heart.getLayer(), 1);
     }
+    
+    @Test
+    public void testScore() {
+        int score = player.getPlayerScore();
+        CollisionManager.getInstance().addCollision(((Coin) coin).getCollisionBox());
 
     @Test
     public void testScoreHeart() {
